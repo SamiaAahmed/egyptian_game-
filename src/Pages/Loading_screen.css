@@ -1,0 +1,41 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('../Aseets/Fonts/PPlayfairDisplaySC-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Playfair';
+  src: url('../Aseets/Fonts/PlayfairDisplay-VariableFont_wght.ttf');
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.main_video {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+}
+
+.loading_screen_div1{
+display: flex;
+width: 541px;
+flex-direction: column;
+align-items: center;
+gap: -22px;
+}
+
+.game_logo{
+width: 541px;
+height: 245.338px;    
+}
