@@ -46,7 +46,7 @@ main {
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 391px;
+gap: 500px;
 margin-top: 3%;
 position: absolute;
   z-index: 1;

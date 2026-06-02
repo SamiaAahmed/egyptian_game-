@@ -1,22 +1,35 @@
 .loader_container {
   width: 541px;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  height: 40px;
+  background-color: #0f2d31; /* empty part */
+  border: 2px solid #c9a84c;
+  border-radius: 6px;
   overflow: hidden;
+  position: relative;
 }
 
 .loader_bar {
-  height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #1F5157, #3a9aa6);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(31, 81, 87, 0.8);
-  animation: load forwards;
+  height: 100%;
+
+  /* blue loading fill */
+  background-color: #1F5157;
+
+  /* symbols only inside the filled part */
+  background-image: url('../../Assets/Images/the symbols.svg');
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: auto 70%;
+
+  animation: load linear forwards;
   animation-duration: inherit;
 }
 
 @keyframes load {
-  from { width: 0%; }
-  to { width: 100%; }
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
