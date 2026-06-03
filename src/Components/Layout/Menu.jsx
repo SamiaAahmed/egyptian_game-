@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Menu.css';
 import Divider from '../../Assets/Images/Line divider.svg';
@@ -10,47 +10,47 @@ const menuItems = [
   { id: 'quit',     label: 'Quit',               path: null,        description: 'Return to the waking world' },
 ];
 
-// Egyptian / ancient hieroglyph-style symbols for the floating particles
-const GLYPHS = ['𓂀', '𓃭', '𓆣', '𓇯', '𓈖', '𓉐', '𓊪', '𓋴', '𓌀', '𓍯', '𓎛', '𓏏', '𓐍', '𓀭', '𓁹', '𓂋'];
+const GLYPHS = ['𓂀', '𓃭', '𓆣', '𓇯', '𓈖', '𓉐', '𓋴', '𓌀', '𓍯', '𓎛', '𓏏', '𓀭', '𓁹', '𓂋'];
 
-const Particles = () => {
-  const particles = Array.from({ length: 26 }, (_, i) => {
-    const left     = 2 + Math.random() * 96;          // % across screen
-    const duration = 14 + Math.random() * 12;         // slower: 14–26s
-    const delay    = Math.random() * 14;              // stagger start
-    const size     = 26 + Math.random() * 32;         // much bigger: 26–58px
-    const opacity  = 0.35 + Math.random() * 0.35;     // much more visible: 0.35–0.70
-    const glyph    = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-    return { i, left, duration, delay, size, opacity, glyph };
-  });
+// Generated ONCE at module load — never changes on re-render, so
+// hovering a menu item cannot reset or reshuffle the particles.
+const PARTICLES = Array.from({ length: 26 }, (_, i) => ({
+  i,
+  left:     2  + Math.random() * 96,
+  duration: 14 + Math.random() * 12,
+  delay:    Math.random() * 14,
+  size:     26 + Math.random() * 32,
+  opacity:  0.35 + Math.random() * 0.35,
+  glyph:    GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
+}));
 
-  return (
-    <div className="menu-particles" aria-hidden="true">
-      {particles.map(p => (
-        <span
-          key={p.i}
-          className="menu-particle"
-          style={{
-            left: `${p.left}%`,
-            fontSize: `${p.size}px`,
-            animationDuration: `${p.duration}s`,
-            animationDelay: `${p.delay}s`,
-            '--p-opacity': p.opacity,
-          }}
-        >
-          {p.glyph}
-        </span>
-      ))}
-    </div>
-  );
-};
+// Pure display component — receives stable PARTICLES, never re-renders
+const Particles = React.memo(() => (
+  <div className="menu-particles" aria-hidden="true">
+    {PARTICLES.map(p => (
+      <span
+        key={p.i}
+        className="menu-particle"
+        style={{
+          left:              `${p.left}%`,
+          fontSize:          `${p.size}px`,
+          animationDuration: `${p.duration}s`,
+          animationDelay:    `${p.delay}s`,
+          '--p-opacity':     p.opacity,
+        }}
+      >
+        {p.glyph}
+      </span>
+    ))}
+  </div>
+));
 
 const Menu = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem]   = useState(null);
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [activeItem,    setActiveItem]    = useState(null);
+  const [hoveredItem,   setHoveredItem]   = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [mounted, setMounted]         = useState(false);
+  const [mounted,       setMounted]       = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 100);
@@ -78,12 +78,11 @@ const Menu = () => {
 
   return (
     <>
-      {/* Floating particles rendered at the page level so they cover the full screen */}
+      {/* Particles are outside the menu wrapper and wrapped in React.memo
+          so menu hover state changes never cause them to re-render */}
       <Particles />
 
       <div className={`menu-wrapper ${mounted ? 'menu-wrapper--visible' : ''}`}>
-
-        {/* Menu Items */}
         <nav className="menu-nav" aria-label="Main menu">
           <ul className="menu-list">
             {menuItems.map((item, index) => {
@@ -115,7 +114,7 @@ const Menu = () => {
                     <span className="ornament-diamond" />
                   </span>
 
-                  {/* Label & description — NO icon */}
+                  {/* Label & description */}
                   <span className="menu-item-content">
                     <span className="menu-item-label">{item.label}</span>
                     <span className="menu-item-desc">{item.description}</span>
