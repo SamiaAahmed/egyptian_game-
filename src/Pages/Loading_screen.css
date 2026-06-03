@@ -43,43 +43,42 @@ main {
 }
 
 .loading_screen_div2 {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 500px;
-margin-top: 3%;
-position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 500px;
+  margin-top: 3%;
+  position: absolute;
   z-index: 1;
 }
 
-.loading_screen_div3{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-align-self: stretch; 
-align-items: center;  
+.loading_screen_div3 {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
 }
 
 .game_logo {
   width: 541px;
-  height: 245.338px;    
+  height: 245.338px;
 }
 
-.text1{
-color: #EABF72;
-text-align: center;
-font-family: 'PlayfairDisplay';
-font-size: 36px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;    
+.text1 {
+  color: #EABF72;
+  text-align: center;
+  font-family: 'PlayfairDisplay';
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.text2{
-color: #EABF72;
-font-family: 'PlayfairDisplayVariable';
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;    
+.text2 {
+  color: #EABF72;
+  font-family: 'PlayfairDisplayVariable';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

@@ -1,7 +1,7 @@
 .loader_container {
   width: 541px;
   height: 40px;
-  background-color: #0f2d31; /* empty part */
+  background-color: #0f2d31;
   border: 2px solid #c9a84c;
   border-radius: 6px;
   overflow: hidden;
@@ -11,18 +11,14 @@
 .loader_bar {
   width: 0%;
   height: 100%;
-
-  /* blue loading fill */
   background-color: #1F5157;
-
-  /* symbols only inside the filled part */
   background-image: url('../../Assets/Images/the symbols.svg');
   background-repeat: repeat-x;
   background-position: center;
   background-size: auto 70%;
 
   animation: load linear forwards;
-  animation-duration: inherit;
+  animation-duration: var(--loader-duration, 5s);
 }
 
 @keyframes load {
