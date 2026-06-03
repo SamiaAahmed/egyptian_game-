@@ -28,49 +28,23 @@ main {
   height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding: 4vh 0 5vh;
   background-image: url('../Assets/Images/Splash\ screen.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-/* ─── Two-column layout ─────────────────────────────────────── */
-.menu_screen_layout {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  padding: 0 6vw;
-  gap: 40px;
-}
-
-/* Left column: menu lives here */
-.menu_screen_left {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex: 0 0 auto;
-  height: 100%;
-}
-
-/* Right column: logo + tagline, pushed to the right */
-.menu_screen_right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1;
-  height: 100%;
-}
-
-/* ─── Logo block ────────────────────────────────────────────── */
+/* ─── Top: logo block (same structure as Loading / Splash) ──── */
 .loading_screen_div1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 10;
 }
 
 .loading_screen_div3 {
@@ -90,7 +64,6 @@ main {
   text-align: center;
   font-family: 'PlayfairDisplay';
   font-size: 36px;
-  font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
@@ -99,10 +72,20 @@ main {
   color: #EABF72;
   font-family: 'PlayfairDisplayVariable';
   font-size: 20px;
-  font-style: normal;
   font-weight: 400;
   line-height: normal;
   opacity: 0.65;
   text-align: center;
   margin-top: 6px;
+}
+
+/* ─── Bottom: menu block ────────────────────────────────────── */
+.menu_screen_bottom {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  padding: 0 8vw;
+  z-index: 10;
+  margin-bottom: 100px;
 }
