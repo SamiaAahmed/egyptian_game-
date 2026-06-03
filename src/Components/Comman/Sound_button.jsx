@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Sound_button.css';
 import SoundOnIcon  from '../../Assets/Images/sound_icon.svg';
 import SoundOffIcon from '../../Assets/Images/sound2_icon.svg';
-import GameSound    from '../../Assets/Sounds/Itrue_game_sound.mpeg';
+import GameSound    from '../../Assets/Sound/Itrue_game_sound.mpeg';
 
 const Sound_button = () => {
   // Music plays by default

@@ -1,19 +1,17 @@
 /* ─── Sound Button ──────────────────────────────────────────── */
 .sound-btn {
   position: fixed;
-  top: 24px;
-  left: 28px;
+  top: 50px;
+  left: 100px;
   z-index: 100;
-
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height:64px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: rgba(8, 24, 28, 0.75);
+ background: rgba(31, 81, 87, 0.856);
   border: 1px solid rgba(234, 191, 114, 0.25);
-  border-radius: 50%;
+  border-radius: 20%;
   cursor: pointer;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -27,7 +25,7 @@
 
 /* Hover */
 .sound-btn:hover {
-  background: rgba(31, 81, 87, 0.7);
+  background: rgba(29, 171, 187, 0.534);
   border-color: rgba(234, 191, 114, 0.6);
   transform: scale(1.12);
   box-shadow:
@@ -42,8 +40,8 @@
 
 /* Icon */
 .sound-btn__icon {
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 34px;
   object-fit: contain;
   transition: opacity 0.2s ease, transform 0.2s ease;
   filter: drop-shadow(0 0 4px rgba(234, 191, 114, 0.4));
@@ -60,7 +58,7 @@
 }
 
 .sound-btn--muted:hover {
-  border-color: rgba(192, 102, 74, 0.8);
+  border-color: rgba(139, 50, 23, 0.8);
   background: rgba(50, 15, 10, 0.7);
   box-shadow:
     0 0 18px rgba(192, 102, 74, 0.25),
