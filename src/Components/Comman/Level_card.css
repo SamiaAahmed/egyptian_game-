@@ -62,9 +62,12 @@
 .level-card--locked {
   cursor: not-allowed;
   filter: saturate(0.3) brightness(0.6);
+  transform: scale(0.72);
+  transform-origin: center top;
+  opacity: 0.75;
 }
 .level-card--locked:hover {
-  transform: none;
+  transform: scale(0.72);
   box-shadow: none;
   border-color: rgba(234, 191, 114, 0.1);
 }
@@ -162,7 +165,6 @@
   justify-content: center;
   font-size: 32px;
   background: rgba(8, 24, 28, 0.5);
-  cursor: not-allowed;
 }
 
 /* ─── Divider ───────────────────────────────────────────────── */
@@ -206,7 +208,7 @@
   line-height: 1.5;
 }
 
-/* ─── Footer — CTA only, centered ──────────────────────────── */
+/* ─── Footer — CTA only ─────────────────────────────────────── */
 .level-card__footer {
   display: flex;
   align-items: center;

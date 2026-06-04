@@ -14,6 +14,7 @@ const Level_screen = () => {
     <main className='main2'>
       <Sound_button />
       <Menu_button />
+<div className='level_screen_div1'>
 
       <Level_card
         image={Level1Img}
@@ -22,7 +23,9 @@ const Level_screen = () => {
         description="The Nile rises. Ancient secrets stir."
         onClick={() => navigate('/game')}
       />
+      </div>
 
+      <div className='level_screen_div2'>
       <Level_card
         image={Level2Img}
         levelNumber={2}
@@ -31,6 +34,9 @@ const Level_screen = () => {
         locked={true}
       />
 
+      </div>
+
+      <div className='level_screen_div3'>
             <Level_card
         image={Level2Img}
         levelNumber={3}
@@ -38,7 +44,9 @@ const Level_screen = () => {
         description="Beyond the delta, a forgotten city waits."
         locked={true}
       />
+      </div>
 
+      <div className='level_screen_div4'>
           <Level_card
         image={Level2Img}
         levelNumber={4}
@@ -46,6 +54,8 @@ const Level_screen = () => {
         description="Beyond the delta, a forgotten city waits."
         locked={true}
       />
+
+      </div>
     </main>
   );
 };

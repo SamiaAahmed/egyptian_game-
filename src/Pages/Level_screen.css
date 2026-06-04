@@ -38,3 +38,47 @@ body {
   background-repeat: no-repeat;
   overflow: hidden;
 }
+
+.level_screen_div1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 150px;
+  z-index: 10;
+  position: absolute;
+    top: 270px;
+  left: 420px;
+}
+
+.level_screen_div2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 46px;
+  z-index: 10;
+  position: absolute;
+  top: 350px;
+  left: 750px;
+}
+
+.level_screen_div3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 46px;
+  z-index: 10;
+  position: absolute;
+  top: 350px;
+  right: 580px;
+}
+
+.level_screen_div4 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 46px;
+  z-index: 10;
+  position: absolute;
+  top: 350px;
+  right: 250px;
+}
