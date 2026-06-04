@@ -1,24 +1,24 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import './Menu_button.css';
+import Menu_popup from './Menu_popup';
 import MenuIcon from '../../Assets/Images/menu_icon.svg';
 
 const Menu_button = () => {
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   return (
-    <button
-      className="menu-btn"
-      onClick={() => navigate('/menu')}
-      aria-label="Open menu"
-      title="Open menu"
-    >
-      <img
-        className="menu-btn__icon"
-        src={MenuIcon}
-        alt="Menu"
-      />
-    </button>
+    <>
+      <button
+        className="menu-btn"
+        onClick={() => setOpen(true)}
+        aria-label="Open menu"
+        title="Open menu"
+      >
+        <img className="menu-btn__icon" src={MenuIcon} alt="Menu" />
+      </button>
+
+      {open && <Menu_popup onClose={() => setOpen(false)} />}
+    </>
   );
 };
 
