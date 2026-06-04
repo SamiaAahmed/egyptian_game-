@@ -1,0 +1,232 @@
+/* ─── Level Card ────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('../../Assets/Fonts/PlayfairDisplaySC-Regular.ttf');
+}
+@font-face {
+  font-family: 'PlayfairDisplayVariable';
+  src: url('../../Assets/Fonts/PlayfairDisplay-VariableFont_wght.ttf');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('../../Assets/Fonts/Rajdhani-Regular.ttf');
+}
+
+:root {
+  --gold:       #EABF72;
+  --gold-dim:   rgba(234, 191, 114, 0.35);
+  --text-muted: rgba(234, 191, 114, 0.55);
+  --card-width: 260px;
+}
+
+/* ─── Card shell ────────────────────────────────────────────── */
+.level-card {
+  position: relative;
+  width: var(--card-width);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid rgba(234, 191, 114, 0.18);
+  background: rgba(8, 24, 28, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(28px);
+  animation: cardEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  transition:
+    border-color 0.35s ease,
+    transform    0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow   0.35s ease;
+}
+
+@keyframes cardEnter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Hover ─────────────────────────────────────────────────── */
+.level-card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(234, 191, 114, 0.12),
+    inset 0 0 40px rgba(31, 81, 87, 0.15);
+}
+
+/* ─── Locked ────────────────────────────────────────────────── */
+.level-card--locked {
+  cursor: not-allowed;
+  filter: saturate(0.3) brightness(0.6);
+}
+.level-card--locked:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(234, 191, 114, 0.1);
+}
+
+/* ─── Active / clicked ──────────────────────────────────────── */
+.level-card--active {
+  border-color: var(--gold);
+  box-shadow: 0 0 50px rgba(234, 191, 114, 0.35);
+}
+
+/* ─── Sweep shimmer ─────────────────────────────────────────── */
+.level-card__sweep {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(234, 191, 114, 0.07),
+    rgba(234, 191, 114, 0.13),
+    transparent
+  );
+  transform: skewX(-15deg);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.level-card:hover .level-card__sweep {
+  animation: cardSweep 0.65s ease forwards;
+}
+
+@keyframes cardSweep {
+  from { left: -120%; }
+  to   { left: 140%; }
+}
+
+/* ─── Image ─────────────────────────────────────────────────── */
+.level-card__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.level-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;        /* show top of image so faces aren't cut */
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.level-card:hover .level-card__image {
+  transform: scale(1.06);
+}
+
+/* Gradient fade at bottom of image into card body */
+.level-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(8, 24, 28, 0.9) 100%
+  );
+}
+
+/* Level badge */
+.level-card__badge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-family: 'Rajdhani';
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  background: rgba(8, 24, 28, 0.75);
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px;
+  padding: 3px 8px;
+  backdrop-filter: blur(6px);
+}
+
+/* Lock overlay */
+.level-card__lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: rgba(8, 24, 28, 0.5);
+  cursor: not-allowed;
+}
+
+/* ─── Divider ───────────────────────────────────────────────── */
+.level-card__divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.level-card:hover .level-card__divider { opacity: 1; }
+
+/* ─── Body ──────────────────────────────────────────────────── */
+.level-card__body {
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.level-card__title {
+  font-family: 'PlayfairDisplay';
+  font-size: 17px;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  transition: text-shadow 0.3s ease;
+}
+
+.level-card:hover .level-card__title {
+  text-shadow:
+    0 0 10px rgba(234, 191, 114, 0.5),
+    0 0 24px rgba(234, 191, 114, 0.2);
+}
+
+.level-card__desc {
+  font-family: 'PlayfairDisplayVariable';
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+/* ─── Footer — CTA only, centered ──────────────────────────── */
+.level-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.level-card__cta {
+  font-family: 'Rajdhani';
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+}
+
+.level-card:hover .level-card__cta {
+  opacity: 0.85;
+  transform: translateX(0);
+}
