@@ -35,10 +35,10 @@ const Level_card = ({
       aria-label={`${title}${locked ? ' — locked' : ''}`}
       onKeyDown={e => e.key === 'Enter' && handleClick()}
     >
-      {/* Sweep shimmer */}
+
       <span className="level-card__sweep" aria-hidden="true" />
 
-      {/* Image */}
+
       <div className="level-card__image-wrap">
         {image ? (
           <img className="level-card__image" src={image} alt={title} />
@@ -62,10 +62,8 @@ const Level_card = ({
         {locked && <div className="level-card__lock" aria-hidden="true">🔒</div>}
       </div>
 
-      {/* Divider */}
       <div className="level-card__divider" aria-hidden="true" />
 
-      {/* Body */}
       <div className="level-card__body">
         <h3 className="level-card__title">{title}</h3>
         {description && <p className="level-card__desc">{description}</p>}

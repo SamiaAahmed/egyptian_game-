@@ -4,7 +4,7 @@ import Loading_screen from './Pages/Loading_screen';
 import Splash_screen from './Pages/Splash_screen';
 import Menu_screen from './Pages/Menu_screen';
 import Level_screen from './Pages/Level_screen';
-import Setting_screen from './Pages/Setting_screen';
+import Setting_screen from './Components/Comman/Setting_screen';
 import Story1 from './Pages/Story1_screen';
 
 const Routess = () => {

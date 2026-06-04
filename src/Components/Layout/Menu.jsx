@@ -12,8 +12,6 @@ const menuItems = [
 
 const GLYPHS = ['𓂀', '𓃭', '𓆣', '𓇯', '𓈖', '𓉐', '𓋴', '𓌀', '𓍯', '𓎛', '𓏏', '𓀭', '𓁹', '𓂋'];
 
-// Generated ONCE at module load — never changes on re-render, so
-// hovering a menu item cannot reset or reshuffle the particles.
 const PARTICLES = Array.from({ length: 26 }, (_, i) => ({
   i,
   left:     2  + Math.random() * 96,
@@ -24,7 +22,7 @@ const PARTICLES = Array.from({ length: 26 }, (_, i) => ({
   glyph:    GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
 }));
 
-// Pure display component — receives stable PARTICLES, never re-renders
+
 const Particles = React.memo(() => (
   <div className="menu-particles" aria-hidden="true">
     {PARTICLES.map(p => (
@@ -45,7 +43,7 @@ const Particles = React.memo(() => (
   </div>
 ));
 
-const Menu = () => {
+const Menu = ({ onOpenSettings }) => {
   const navigate = useNavigate();
   const [activeItem,    setActiveItem]    = useState(null);
   const [hoveredItem,   setHoveredItem]   = useState(null);
@@ -58,13 +56,17 @@ const Menu = () => {
   }, []);
 
   const handleSelect = useCallback((item) => {
+    if (item.id === 'settings') {
+      if (onOpenSettings) onOpenSettings();
+      return;
+    }
     setActiveItem(item.id);
     setTimeout(() => {
       if (item.path) navigate(item.path);
       else window.close();
       setActiveItem(null);
     }, 600);
-  }, [navigate]);
+  }, [navigate, onOpenSettings]);
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -78,8 +80,7 @@ const Menu = () => {
 
   return (
     <>
-      {/* Particles are outside the menu wrapper and wrapped in React.memo
-          so menu hover state changes never cause them to re-render */}
+  
       <Particles />
 
       <div className={`menu-wrapper ${mounted ? 'menu-wrapper--visible' : ''}`}>
@@ -108,28 +109,23 @@ const Menu = () => {
                   onKeyDown={e => e.key === 'Enter' && handleSelect(item)}
                   aria-label={item.label}
                 >
-                  {/* Left ornament */}
                   <span className="menu-item-ornament menu-item-ornament--left" aria-hidden="true">
                     <span className="ornament-line" />
                     <span className="ornament-diamond" />
                   </span>
 
-                  {/* Label & description */}
                   <span className="menu-item-content">
                     <span className="menu-item-label">{item.label}</span>
                     <span className="menu-item-desc">{item.description}</span>
                   </span>
 
-                  {/* Right ornament */}
                   <span className="menu-item-ornament menu-item-ornament--right" aria-hidden="true">
                     <span className="ornament-diamond" />
                     <span className="ornament-line" />
                   </span>
 
-                  {/* Sweep shimmer */}
                   <span className="menu-item-sweep" aria-hidden="true" />
 
-                  {/* Active flash */}
                   {isActive && <span className="menu-item-flash" aria-hidden="true" />}
                 </li>
               );

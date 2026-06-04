@@ -1,13 +1,12 @@
 /* ─── Overlay backdrop ──────────────────────────────────────── */
-.menu-popup {
+.settings-popup {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* Blur + dark tint behind the panel */
   background: rgba(5, 12, 18, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -16,7 +15,7 @@
   animation: overlayIn 0.3s ease forwards;
 }
 
-.menu-popup--closing {
+.settings-popup--closing {
   animation: overlayOut 0.3s ease forwards;
 }
 
@@ -24,12 +23,12 @@
 @keyframes overlayOut { from { opacity: 1; } to { opacity: 0; } }
 
 /* ─── Panel ─────────────────────────────────────────────────── */
-.menu-popup__panel {
+.settings-popup__panel {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   padding: 52px 80px 56px;
 
   background: rgba(8, 24, 28, 0.92);
@@ -46,7 +45,7 @@
   animation: panelIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s forwards;
 }
 
-.menu-popup--closing .menu-popup__panel {
+.settings-popup--closing .settings-popup__panel {
   animation: panelOut 0.25s ease forwards;
 }
 
@@ -58,8 +57,8 @@
   to   { opacity: 0; transform: translateY(-12px) scale(0.97); }
 }
 
-/* ─── Title header ──────────────────────────────────────────── */
-.menu-popup__title {
+/* ─── Title ─────────────────────────────────────────────────── */
+.settings-popup__title {
   font-family: 'Rajdhani', sans-serif;
   font-size: 32px;
   font-weight: 700;
@@ -71,18 +70,116 @@
 }
 
 /* Divider */
-.menu-popup__divider {
+.settings-popup__divider {
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, transparent, rgba(234,191,114,0.35), transparent);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
-/* ─── Buttons ───────────────────────────────────────────────── */
-.menu-popup__btn {
-  position: relative;
+/* ─── Row (icon + label + control) ──────────────────────────── */
+.settings-popup__row {
   width: 280px;
-  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+
+  background: rgba(15, 45, 49, 0.6);
+  border: 1px solid rgba(234, 191, 114, 0.2);
+  border-radius: 3px;
+}
+
+.settings-popup__row-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(234, 191, 114, 0.4));
+  flex-shrink: 0;
+}
+
+.settings-popup__row-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #EABF72;
+  flex-shrink: 0;
+  min-width: 54px;
+}
+
+/* ─── Volume Slider ─────────────────────────────────────────── */
+.settings-popup__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    #EABF72 var(--val, 60%),
+    rgba(234, 191, 114, 0.18) var(--val, 60%)
+  );
+  outline: none;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.settings-popup__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #EABF72;
+  box-shadow: 0 0 8px rgba(234, 191, 114, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.settings-popup__slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 14px rgba(234, 191, 114, 0.9);
+}
+
+.settings-popup__slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: #EABF72;
+  box-shadow: 0 0 8px rgba(234, 191, 114, 0.6);
+  cursor: pointer;
+}
+
+/* ─── Language Button ───────────────────────────────────────── */
+.settings-popup__lang-btn {
+  margin-left: auto;
+  padding: 4px 14px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(234, 191, 114, 0.6);
+  background: rgba(8, 24, 28, 0.6);
+  border: 1px solid rgba(234, 191, 114, 0.15);
+  border-radius: 3px;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ─── Bottom Buttons ────────────────────────────────────────── */
+.settings-popup__bottom {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.settings-popup__btn {
+  position: relative;
+  width: 132px;
+  padding: 18px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +206,7 @@
     letter-spacing 0.3s ease;
 }
 
-.menu-popup__btn:hover {
+.settings-popup__btn:hover {
   background: rgba(31, 81, 87, 0.65);
   border-color: rgba(234, 191, 114, 0.5);
   transform: scale(1.04);
@@ -119,12 +216,12 @@
     inset 0 0 30px rgba(31, 81, 87, 0.25);
 }
 
-.menu-popup__btn:active {
+.settings-popup__btn:active {
   transform: scale(0.97);
 }
 
 /* Left accent bar on hover */
-.menu-popup__btn::before {
+.settings-popup__btn::before {
   content: '';
   position: absolute;
   left: 0;
@@ -136,10 +233,10 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.menu-popup__btn:hover::before { opacity: 0.8; }
+.settings-popup__btn:hover::before { opacity: 0.8; }
 
 /* Sweep shimmer */
-.menu-popup__btn::after {
+.settings-popup__btn::after {
   content: '';
   position: absolute;
   top: 0;
@@ -156,21 +253,10 @@
   transform: skewX(-15deg);
   pointer-events: none;
 }
-.menu-popup__btn:hover::after {
+.settings-popup__btn:hover::after {
   animation: btnSweep 0.5s ease forwards;
 }
 @keyframes btnSweep {
   from { left: -100%; }
   to   { left: 140%; }
-}
-
-/* Home button — same size as others */
-.menu-popup__btn--home {
-  color: rgba(234, 191, 114, 0.75);
-  margin-top: 4px;
-}
-.menu-popup__btn--home:hover {
-  color: #EABF72;
-  background: rgba(10, 30, 34, 0.6);
-  border-color: rgba(234, 191, 114, 0.35);
 }
