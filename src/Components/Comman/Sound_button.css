@@ -5,22 +5,27 @@
   left: 100px;
   z-index: 100;
   width: 64px;
-  height:64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
- background: rgba(31, 81, 87, 0.856);
+  background: rgba(31, 81, 87, 0.856);
   border: 1px solid rgba(234, 191, 114, 0.25);
   border-radius: 20%;
   cursor: pointer;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-
   transition:
     background   0.3s ease,
     border-color 0.3s ease,
     transform    0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow   0.3s ease;
+}
+
+/* Hidden — invisible but still mounts so audio keeps playing */
+.sound-btn--hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Hover */
@@ -52,7 +57,7 @@
   transform: scale(1.1);
 }
 
-/* Muted state — subtle red tint on the border */
+/* Muted state */
 .sound-btn--muted {
   border-color: rgba(192, 102, 74, 0.45);
 }
@@ -65,7 +70,7 @@
     0 0 36px rgba(192, 102, 74, 0.1);
 }
 
-/* Pulse ring animation when sound is playing */
+/* Pulse ring when playing */
 .sound-btn--playing::after {
   content: '';
   position: absolute;

@@ -33,16 +33,7 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.main_video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  object-fit: fill;
-  z-index: -1;
+  z-index: 1;
 }
 
 .loading_screen_div1 {
@@ -143,4 +134,8 @@ main {
       0 0 35px rgba(234, 191, 114, 0.2);
     letter-spacing: 0.04em;
   }
+}
+
+.hide{
+ z-index: -1000;
 }

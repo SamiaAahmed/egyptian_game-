@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Sound_button from '../Components/Comman/Sound_button';
 import './Loading_screen.css';
 import Splash_screen_video from '../Assets/Images/Splash_screen_video.mp4';
 import Game_logo from '../Assets/Images/Itrue_game_logo.svg';
@@ -36,6 +36,8 @@ const Loading_screen = () => {
 
   return (
     <main>
+      
+       <Sound_button hidden />
       <div className="loading_screen_div2">
         <div className="loading_screen_div1">
           <img
