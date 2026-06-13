@@ -12,48 +12,61 @@ const Textbox = ({
   onTypingDone,
   startDelay = START_DELAY,
 }) => {
-  const [displayedLines, setDisplayedLines] = useState(lines.map(() => ''));
+  const [displayedLines, setDisplayedLines] = useState(() => lines.map(() => ''));
   const [typingDone, setTypingDone] = useState(false);
   const [clickHint, setClickHint] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const showTimer = setTimeout(() => setVisible(true), 50);
+    let cancelled = false;
+    const timeouts = [];
+
+    const safeTimeout = (fn, delay) => {
+      const id = setTimeout(() => {
+        if (!cancelled) fn();
+      }, delay);
+      timeouts.push(id);
+      return id;
+    };
+
+    safeTimeout(() => setVisible(true), 50);
 
     let lineIdx = 0;
     let charIdx = 0;
-    let timeout;
 
     const tick = () => {
+      if (cancelled) return;
+
       if (lineIdx >= lines.length) {
         setTypingDone(true);
         if (onTypingDone) onTypingDone();
-        setTimeout(() => setClickHint(true), 400);
+        safeTimeout(() => setClickHint(true), 400);
         return;
       }
 
       const line = lines[lineIdx];
 
       if (charIdx <= line.length) {
+        const snapshot = line.slice(0, charIdx);
         setDisplayedLines(prev => {
           const next = [...prev];
-          next[lineIdx] = line.slice(0, charIdx);
+          next[lineIdx] = snapshot;
           return next;
         });
         charIdx++;
-        timeout = setTimeout(tick, CHAR_DELAY);
+        safeTimeout(tick, CHAR_DELAY);
       } else {
         lineIdx++;
         charIdx = 0;
-        timeout = setTimeout(tick, LINE_PAUSE);
+        safeTimeout(tick, LINE_PAUSE);
       }
     };
 
-    timeout = setTimeout(tick, startDelay);
+    safeTimeout(tick, startDelay);
 
     return () => {
-      clearTimeout(showTimer);
-      clearTimeout(timeout);
+      cancelled = true;
+      timeouts.forEach(clearTimeout);
     };
   }, [lines, startDelay, onTypingDone]);
 
