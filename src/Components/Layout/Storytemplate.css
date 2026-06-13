@@ -4,20 +4,6 @@
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'PlayfairDisplay';
-  src: url('../Assets/Fonts/PlayfairDisplaySC-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'PlayfairDisplayVariable';
-  src: url('../Assets/Fonts/PlayfairDisplay-VariableFont_wght.ttf');
-}
-
-@font-face {
-  font-family: 'Rajdhani';
-  src: url('../Assets/Fonts/Rajdhani-Regular.ttf');
-}
 
 body {
   overflow: hidden;
@@ -32,10 +18,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 4vh 0 5vh;
-  background-image: url('../../Assets/Images/intro1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
 }
-
