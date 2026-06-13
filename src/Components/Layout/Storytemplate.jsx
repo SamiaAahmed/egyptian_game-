@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Menu_screen.css';
-import Sound_button  from '../Components/Comman/Sound_button';
-import Setting_screen from '../Components/Comman/Setting_screen';
-import Menu_button    from '../Components/Comman/Menu_button';
+import './Storytemplate.css';
+import Sound_button   from '../Comman/Sound_button';
+import Setting_screen from '../Comman/Setting_screen';
+import Menu_button    from '../Comman/Menu_button';
 
-const Menu_screen = ({ background, nextPath }) => {
+const Storytemplate = ({ background, nextPath }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -23,9 +23,8 @@ const Menu_screen = ({ background, nextPath }) => {
     >
       <Sound_button />
       <Menu_button />
-
     </main>
   );
 };
 
-export default Menu_screen;
+export default Storytemplate;
