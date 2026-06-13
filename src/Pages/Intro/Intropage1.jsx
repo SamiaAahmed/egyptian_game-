@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Intropage1.css';
 import Menu_button from '../../Components/Comman/Menu_button';
@@ -41,26 +41,26 @@ const Intro1_screen = () => {
   const navigate = useNavigate();
   const [typingDone, setTypingDone] = useState(false);
 
-  const handleScreenClick = useCallback(() => {
-    if (!typingDone) return;
-    navigate('/story2');
-  }, [typingDone, navigate]);
-
-  const handleSkip = useCallback((e) => {
-    e.stopPropagation();
-    navigate('/menu');
-  }, [navigate]);
-
   // "Never forgets" finishes its glowReveal animation
   const handleTextAnimationEnd = useCallback(() => {
     setTypingDone(true);
   }, []);
 
+  // Spacebar → navigate to /story2 (only after typing animation done)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        if (typingDone) navigate('/story2');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [typingDone, navigate]);
+
   return (
     <main
       className='main3'
-      onClick={handleScreenClick}
-      style={{ cursor: typingDone ? 'pointer' : 'default' }}
     >
       <Sound_button />
       <Menu_button />
