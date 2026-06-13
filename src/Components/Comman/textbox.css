@@ -1,8 +1,8 @@
 .story1_textbox {
   position: absolute;
   bottom: 7vh;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 5vw;
+  transform: none;
   z-index: 15;
   width: min(680px, 88vw);
   padding: 28px 36px 22px;
@@ -41,7 +41,7 @@ background: linear-gradient(160deg, rgb(41 65 139 / 56%) 0%, rgb(0 40 71 / 62%) 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 108px; /* prevents box resize while typing */
+  min-height: 108px;
 }
 
 .story1_line {
