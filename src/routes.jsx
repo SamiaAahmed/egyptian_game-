@@ -136,11 +136,22 @@ the Accused."`,
 
         <Route path="/level1_4"
          element={
-    <Storytemplate background={Level1Bg4} nextPath="/level1_5"
+    <Storytemplate backgroundVideo={Level1Bg4} nextPath="/level1_5"
       lines={[
         `She realizes that the room is frozen in the hour after her mother died, the child doesn't look up. She doesn't know Nebet is there.
         Nebet cannot speak yet. She cannot touch anything. She can only watch  and notice.
         `,
+      ]}
+      quoteIndex={0}
+    />
+  }
+/>
+        <Route path="/level1_5"
+         element={
+    <Storytemplate backgroundVideo={Level1Bg4} nextPath="/level1_6"
+      lines={[
+        `She realizes that the room is frozen in the hour after her mother died, the child doesn't look up. She doesn't know Nebet is there.
+        Nebet cannot speak yet. She cannot touch anything. She can only watch  and notice. `,
       ]}
       quoteIndex={0}
     />

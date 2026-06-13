@@ -4,10 +4,11 @@ import './Storytemplate.css';
 import Sound_button   from '../Comman/Sound_button';
 import Setting_screen from '../Comman/Setting_screen';
 import Menu_button    from '../Comman/Menu_button';
-import Textbox         from '../Comman/textbox';
+import Textbox        from '../Comman/textbox';
 
 const Storytemplate = ({
   background,
+  backgroundVideo,
   nextPath,
   lines = [],
   quoteIndex = -1,
@@ -15,6 +16,14 @@ const Storytemplate = ({
 }) => {
   const navigate = useNavigate();
   const [typingDone, setTypingDone] = useState(false);
+
+  // Allow either an explicit backgroundVideo prop, OR auto-detect
+  // if `background` itself points to a video file.
+  const isVideo =
+    !!backgroundVideo ||
+    (typeof background === 'string' && /\.(mp4|webm|ogg)$/i.test(background));
+
+  const videoSrc = backgroundVideo || background;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -30,10 +39,14 @@ const Storytemplate = ({
   return (
     <main
       className="main_intro1"
-      style={{
-        backgroundImage: `url(${background})`,
-      }}
+      style={!isVideo ? { backgroundImage: `url(${background})` } : undefined}
     >
+      {isVideo && (
+        <video className="main_video" autoPlay muted loop playsInline>
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      )}
+
       <Sound_button />
       <Menu_button />
 
