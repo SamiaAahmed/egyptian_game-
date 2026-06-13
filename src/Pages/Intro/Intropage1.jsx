@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Intropage1.css';
 import Menu_button from '../../Components/Comman/Menu_button';
 import Game_logo from '../../Assets/Images/Itrue_game_logo.svg';
@@ -37,7 +38,7 @@ const Particles = React.memo(() => (
   </div>
 ));
 
-// The three lines of narration, each typed one after the other
+// The lines of narration, each typed one after the other
 const LINES = [
   'In the modern city of Kemet.',
   'A city built on top of a kingdom that never fully died.',
@@ -47,14 +48,15 @@ const LINES = [
 
 const CHAR_DELAY    = 48;   // ms per character
 const LINE_PAUSE    = 700;  // ms pause between lines
-const TEXT_START_MS = 4400; // when splash overlay appears — we show text before that
+const TEXT_START_MS = 4400; // when text box appears
 
-const Intro1_screen = ({ navigate }) => {
-  const [splashVisible, setSplashVisible]     = useState(false);
-  const [displayedLines, setDisplayedLines]   = useState(['', '', '', '']);
-  const [typingDone, setTypingDone]           = useState(false);
-  const [textBoxVisible, setTextBoxVisible]   = useState(false);
-  const [clickHint, setClickHint]             = useState(false);
+const Intro1_screen = () => {
+  const navigate = useNavigate();
+
+  const [displayedLines, setDisplayedLines] = useState(['', '', '', '']);
+  const [typingDone, setTypingDone]         = useState(false);
+  const [textBoxVisible, setTextBoxVisible] = useState(false);
+  const [clickHint, setClickHint]           = useState(false);
 
   // Show text box shortly after logo/title animations settle
   useEffect(() => {
@@ -66,8 +68,8 @@ const Intro1_screen = ({ navigate }) => {
   useEffect(() => {
     if (!textBoxVisible) return;
 
-    let lineIdx  = 0;
-    let charIdx  = 0;
+    let lineIdx = 0;
+    let charIdx = 0;
     let timeout;
 
     const tick = () => {
@@ -94,20 +96,20 @@ const Intro1_screen = ({ navigate }) => {
       }
     };
 
-    timeout = setTimeout(tick, 300); // small delay after box appears
+    timeout = setTimeout(tick, 300);
     return () => clearTimeout(timeout);
   }, [textBoxVisible]);
 
   // Click anywhere (after typing done) → navigate to Story2
   const handleScreenClick = useCallback(() => {
     if (!typingDone) return;
-    if (navigate) navigate(' Intro2_screen');
+    navigate('/story2');
   }, [typingDone, navigate]);
 
   // Skip → go to Menu
   const handleSkip = useCallback((e) => {
     e.stopPropagation();
-    if (navigate) navigate('Menu_screen');
+    navigate('/menu');
   }, [navigate]);
 
   return (
@@ -134,7 +136,6 @@ const Intro1_screen = ({ navigate }) => {
           </div>
         </div>
       </div>
-1
     </main>
   );
 };
