@@ -5,7 +5,7 @@ import Splash_screen from './Pages/Splash_screen';
 import Menu_screen from './Pages/Menu_screen';
 import Level_screen from './Pages/Level_screen';
 import Setting_screen from './Components/Comman/Setting_screen';
-import Story1 from './Pages/Story1_screen';
+import Intro1 from './Pages/Intro/Intropage1';
 
 const Routess = () => {
   return (
@@ -16,7 +16,7 @@ const Routess = () => {
         <Route path="/menu"    element={<Menu_screen />} />
         <Route path="/levels"  element={<Level_screen />} />
         <Route path="/settings" element={<Setting_screen />} />
-        <Route path="/game"    element={<Story1 />} />
+        <Route path="/story1"    element={<Intro1 />} />
       </Routes>
     </BrowserRouter>
   );

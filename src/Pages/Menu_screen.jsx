@@ -23,7 +23,7 @@ const Menu_screen = () => {
       </div>
 
       <div className='menu_screen_bottom'>
-        {/* Pass onOpenSettings so Menu can trigger the overlay */}
+        
         <Menu onOpenSettings={() => setShowSettings(true)} />
       </div>
 

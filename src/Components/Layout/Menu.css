@@ -1,4 +1,4 @@
-/* ─── Reset & Fonts ─────────────────────────────────────────── */
+
 * { padding: 0; margin: 0; box-sizing: border-box; }
 
 @font-face {
@@ -14,7 +14,7 @@
   src: url('../../Assets/Fonts/Rajdhani-Regular.ttf');
 }
 
-/* ─── CSS Variables ─────────────────────────────────────────── */
+
 :root {
   --gold:       #EABF72;
   --gold-dim:   rgba(234, 191, 114, 0.4);
@@ -23,7 +23,7 @@
   --quit-glow:  rgba(192, 102, 74, 0.3);
 }
 
-/* ─── Floating Hieroglyph Particles ────────────────────────── */
+
 .menu-particles {
   position: fixed;
   inset: 0;
@@ -61,7 +61,7 @@
   }
 }
 
-/* ─── Wrapper ───────────────────────────────────────────────── */
+
 .menu-wrapper {
   position: relative;
   z-index: 10;
@@ -81,7 +81,7 @@
   transform: translateX(0);
 }
 
-/* ─── Navigation List ───────────────────────────────────────── */
+
 .menu-nav { width: 100%; }
 
 .menu-list {
@@ -92,31 +92,23 @@
   width: 100%;
 }
 
-/* ─── Menu Item ─────────────────────────────────────────────── */
 .menu-item {
   position: relative;
   display: flex;
   align-items: center;
   gap: 0;
-
-  /* No fixed height — let padding define the size naturally */
   padding: 18px 28px;
-
   cursor: pointer;
   border: 1px solid rgba(234, 191, 114, 0.2);
   border-radius: 3px;
-  /* overflow NOT hidden — so nothing gets clipped */
   overflow: visible;
-
   transition:
     border-color 0.35s ease,
     background   0.35s ease,
     transform    0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow   0.35s ease;
-
   opacity: 0;
   animation: slideInItem 0.6s ease forwards;
-
   background: rgba(8, 24, 28, 0.82);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -149,7 +141,6 @@
   box-shadow: 0 0 24px var(--quit-glow), inset 0 0 20px rgba(192,102,74,0.1);
 }
 
-/* ─── Ornaments ─────────────────────────────────────────────── */
 .menu-item-ornament {
   display: flex;
   align-items: center;
@@ -189,7 +180,6 @@
   50%       { box-shadow: 0 0 8px var(--gold), 0 0 16px rgba(234,191,114,0.4); }
 }
 
-/* ─── Content wrapper ───────────────────────────────────────── */
 .menu-item-content {
   display: flex;
   flex-direction: column;
@@ -197,7 +187,6 @@
   flex: 1;
 }
 
-/* ─── Label ─────────────────────────────────────────────────── */
 .menu-item-label {
   font-family: 'Rajdhani';
   font-size: 26px;
@@ -206,8 +195,6 @@
   color: var(--gold);
   text-transform: uppercase;
   line-height: 1;
-
-  /* Starts centred — shifts up slightly on hover to make room */
   transform: translateY(0);
   transition:
     transform      0.35s cubic-bezier(0.4, 0, 0.2, 1),
@@ -216,7 +203,6 @@
 }
 
 .menu-item--hover .menu-item-label {
-  /* Nudge up just enough for the description to appear below */
   transform: translateY(-6px);
   letter-spacing: 0.20em;
   text-shadow:
@@ -224,20 +210,16 @@
     0 0 30px rgba(234, 191, 114, 0.3);
 }
 
-/* ─── Description — hidden at rest, grows in below label ────── */
 .menu-item-desc {
   font-family: 'PlayfairDisplayVariable';
   font-size: 12px;
   color: var(--text-muted);
   letter-spacing: 0.05em;
   line-height: 1.2;
-
-  /* Collapsed and invisible at rest */
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transform: translateY(-4px);
-
   transition:
     max-height 0.35s ease,
     opacity    0.25s ease 0.08s,
@@ -245,12 +227,11 @@
 }
 
 .menu-item--hover .menu-item-desc {
-  max-height: 40px;   /* enough for one line */
+  max-height: 40px;   
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ─── Hover sweep shimmer ───────────────────────────────────── */
 .menu-item-sweep {
   position: absolute;
   top: 0;
@@ -277,7 +258,6 @@
   to   { left: 130%; }
 }
 
-/* ─── Active flash ──────────────────────────────────────────── */
 .menu-item-flash {
   position: absolute;
   inset: 0;
@@ -291,7 +271,6 @@
   to   { opacity: 0; }
 }
 
-/* ─── Left accent bar ───────────────────────────────────────── */
 .menu-item::before {
   content: '';
   position: absolute;
@@ -308,7 +287,7 @@
 .menu-item--hover::before  { opacity: 0.8; }
 .menu-item--active::before { opacity: 1; }
 
-/* ─── Footer hint ───────────────────────────────────────────── */
+
 .menu-footer-hint {
   font-family: 'Rajdhani';
   font-size: 12px;

@@ -39,7 +39,6 @@ main {
   overflow: hidden;
 }
 
-/* ─── Top: logo block (same structure as Loading / Splash) ──── */
 .loading_screen_div1 {
   display: flex;
   flex-direction: column;

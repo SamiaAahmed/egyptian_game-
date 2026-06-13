@@ -4,7 +4,7 @@ import './Menu.css';
 import Divider from '../../Assets/Images/Line divider.svg';
 
 const menuItems = [
-  { id: 'begin',    label: 'Begin the Journey', path: '/game',     description: 'Step onto the river of time' },
+  { id: 'begin',    label: 'Begin the Journey', path: '/story1',     description: 'Step onto the river of time' },
   { id: 'levels',   label: 'Levels',             path: '/levels',   description: 'Choose your chapter' },
   { id: 'settings', label: 'Settings',           path: '/settings', description: 'Adjust your experience' },
   { id: 'quit',     label: 'Quit',               path: null,        description: 'Return to the waking world' },

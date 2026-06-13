@@ -1,0 +1,98 @@
+.story1_textbox {
+  position: absolute;
+  bottom: 7vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  width: min(680px, 88vw);
+  padding: 28px 36px 22px;
+background: linear-gradient(160deg, rgb(41 65 139 / 56%) 0%, rgb(0 40 71 / 62%) 100%);
+  border: 1px solid rgba(234, 191, 114, 0.28);
+  border-top: 2px solid rgba(234, 191, 114, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(234, 191, 114, 0.06),
+    0 8px 40px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(234, 191, 114, 0.08);
+  opacity: 0;
+  translate: 0 18px;
+  transition:
+    opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    translate 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.story1_textbox--visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.story1_textbox::before,
+.story1_textbox::after {
+  content: '𓂀';
+  position: absolute;
+  top: 8px;
+  color: rgba(234, 191, 114, 0.3);
+  font-size: 14px;
+  font-family: serif;
+}
+.story1_textbox::before { left: 12px; }
+.story1_textbox::after  { right: 12px; }
+
+.story1_textbox_lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 108px; /* prevents box resize while typing */
+}
+
+.story1_line {
+  color: #EABF72;
+  font-family: 'PlayfairDisplayVariable';
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.65;
+  opacity: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.story1_line--quote {
+  font-style: italic;
+  opacity: 0.75;
+  padding-left: 12px;
+  border-left: 2px solid rgba(234, 191, 114, 0.35);
+}
+
+.story1_cursor {
+  display: inline-block;
+  color: #EABF72;
+  font-weight: 300;
+  animation: blink 0.75s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.story1_continue {
+  margin-top: 16px;
+  color: rgba(234, 191, 114, 0.45);
+  font-family: 'Rajdhani';
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.story1_continue--visible {
+  opacity: 1;
+  animation: pulseHint 2.4s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.9; }
+}
