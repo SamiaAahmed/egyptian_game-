@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './textbox.css';
 
 const CHAR_DELAY = 48;
@@ -17,7 +17,12 @@ const Textbox = ({
   const [clickHint, setClickHint] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  const hasStarted = useRef(false);
+
   useEffect(() => {
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+
     let cancelled = false;
     const timeouts = [];
 
