@@ -2,11 +2,10 @@
   position: absolute;
   bottom: 7vh;
   left: 5vw;
-  transform: none;
   z-index: 15;
   width: min(680px, 88vw);
   padding: 28px 36px 22px;
-background: linear-gradient(160deg, rgb(41 65 139 / 56%) 0%, rgb(0 40 71 / 62%) 100%);
+  background: linear-gradient(160deg, rgb(41 65 139 / 56%) 0%, rgb(0 40 71 / 62%) 100%);
   border: 1px solid rgba(234, 191, 114, 0.28);
   border-top: 2px solid rgba(234, 191, 114, 0.55);
   box-shadow:

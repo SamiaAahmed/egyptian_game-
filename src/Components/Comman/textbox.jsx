@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './textbox.css';
 
 const CHAR_DELAY = 48;
@@ -12,66 +12,48 @@ const Textbox = ({
   onTypingDone,
   startDelay = START_DELAY,
 }) => {
-  const [displayedLines, setDisplayedLines] = useState(() => lines.map(() => ''));
+  const [displayedLines, setDisplayedLines] = useState(lines.map(() => ''));
   const [typingDone, setTypingDone] = useState(false);
   const [clickHint, setClickHint] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const hasStarted = useRef(false);
-
   useEffect(() => {
-    if (hasStarted.current) return;
-    hasStarted.current = true;
-
-    let cancelled = false;
-    const timeouts = [];
-
-    const safeTimeout = (fn, delay) => {
-      const id = setTimeout(() => {
-        if (!cancelled) fn();
-      }, delay);
-      timeouts.push(id);
-      return id;
-    };
-
-    safeTimeout(() => setVisible(true), 50);
+    const showTimer = setTimeout(() => setVisible(true), 50);
 
     let lineIdx = 0;
     let charIdx = 0;
+    let timeout;
 
     const tick = () => {
-      if (cancelled) return;
-
       if (lineIdx >= lines.length) {
         setTypingDone(true);
         if (onTypingDone) onTypingDone();
-        safeTimeout(() => setClickHint(true), 400);
+        setTimeout(() => setClickHint(true), 400);
         return;
       }
 
       const line = lines[lineIdx];
 
       if (charIdx <= line.length) {
-        const snapshot = line.slice(0, charIdx);
         setDisplayedLines(prev => {
           const next = [...prev];
-          next[lineIdx] = snapshot;
+          next[lineIdx] = line.slice(0, charIdx);
           return next;
         });
         charIdx++;
-        safeTimeout(tick, CHAR_DELAY);
+        timeout = setTimeout(tick, CHAR_DELAY);
       } else {
         lineIdx++;
         charIdx = 0;
-        safeTimeout(tick, LINE_PAUSE);
+        timeout = setTimeout(tick, LINE_PAUSE);
       }
     };
 
-    safeTimeout(tick, startDelay);
+    timeout = setTimeout(tick, startDelay);
 
     return () => {
-      cancelled = true;
-      timeouts.forEach(clearTimeout);
+      clearTimeout(showTimer);
+      clearTimeout(timeout);
     };
   }, [lines, startDelay, onTypingDone]);
 
