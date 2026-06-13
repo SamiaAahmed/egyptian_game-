@@ -16,6 +16,8 @@ import Level1Bg1 from './Assets/Images/level1_1.jpg';
 import Level1Bg2 from './Assets/Images/level1_2.jpg';
 import Level1Bg3 from './Assets/Images/level1_3.jpg';
 import Level1Bg5 from './Assets/Images/level1_5.jpg';
+import Level1Bg4 from './Assets/Images/level1_4.mp4';
+import Pause2_screen from './Pages/Level_1/Pause2';
 
 const Routess = () => {
   return (
@@ -130,8 +132,23 @@ the Accused."`,
     />
   }
 />
+  <Route path="/level1_3"  element={< Pause2_screen />} />
+
+        <Route path="/level1_4"
+         element={
+    <Storytemplate background={Level1Bg4} nextPath="/level1_5"
+      lines={[
+        `She realizes that the room is frozen in the hour after her mother died, the child doesn't look up. She doesn't know Nebet is there.
+        Nebet cannot speak yet. She cannot touch anything. She can only watch  and notice.
+        `,
+      ]}
+      quoteIndex={0}
+    />
+  }
+/>
       </Routes>
     </BrowserRouter>
+
   );
 };
 
