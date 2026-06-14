@@ -18,6 +18,8 @@ import Level1Bg3 from './Assets/Images/level1_3.jpg';
 import Level1Bg5 from './Assets/Images/level1_5.jpg';
 import Level1Bg4 from './Assets/Images/level1_4.mp4';
 import Pause2_screen from './Pages/Level_1/Pause2';
+import Level1_screen1 from './Pages/Level_1/Level1_1';
+import Losing_screen from './Pages/Losing_screen';
 
 const Routess = () => {
   return (
@@ -31,6 +33,7 @@ const Routess = () => {
         <Route path="/menu"      element={<Menu_screen />} />
         <Route path="/levels"    element={<Level_screen />} />
         <Route path="/settings"  element={<Setting_screen />} />
+        <Route path="/losing"    element={<Losing_screen/>} />
 
         {/* Intro */}
 
@@ -157,6 +160,8 @@ the Accused."`,
     />
   }
 />
+ <Route path="/level1_6"  element={< Level1_screen1 />} />
+
       </Routes>
     </BrowserRouter>
 

@@ -1,0 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  overflow: hidden;
+}
+
+.main_level1 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vh 0 5vh;
+  background-image: url(../../Assets/Images/level1_5.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.senet_boared{
+display: flex;
+margin-top: 5%;
+width: 759px;
+height: 759px;
+justify-content: center;
+align-items: center;    
+}
