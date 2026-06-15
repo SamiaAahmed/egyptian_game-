@@ -75,7 +75,7 @@ const   Pause2_screen = () => {
             >
             She is not angry. <br></br>
            She is simply incomplete  <br></br>
-           The loop will not break untilsomeone does. 
+           The loop will not break until someone does. 
             </h1>
           </div>
         </div>

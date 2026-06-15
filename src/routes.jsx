@@ -20,6 +20,7 @@ import Level1Bg4 from './Assets/Images/level1_4.mp4';
 import Pause2_screen from './Pages/Level_1/Pause2';
 import Level1_screen1 from './Pages/Level_1/Level1_1';
 import Losing_screen from './Pages/Losing_screen';
+import Level1_screen2 from './Pages/Level_1/Level1_2';
 
 const Routess = () => {
   return (
@@ -50,7 +51,7 @@ const Routess = () => {
     />
   }
 /> 
-        <Route path="/story3"
+           <Route path="/story3"
          element={
     <Storytemplate background={Intro2Bg} nextPath="/Story4"
       lines={[
@@ -162,6 +163,20 @@ the Accused."`,
 />
  <Route path="/level1_6"  element={< Level1_screen1 />} />
 
+   <Route path="/level1_7" element={<Level1_screen2 />} />
+
+        <Route path="/level1_8"
+         element={
+    <Storytemplate backgroundVideo={Level1Bg4} nextPath="/level1_6"
+      lines={[
+        '"Now her name is spoken."',
+        '"At last she rests in peace her name is no longer a whisper of shame ."',
+        '"Free at last from her fathers sins."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
       </Routes>
     </BrowserRouter>
 

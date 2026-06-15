@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Timer.css';
-import timerSound from '../../Assets/Images/timer_sound.mp3';
+import timerSound from '../../Assets/Sound/timer_sound.mp3';
 
 const Timer = ({
-  duration = 90,           // seconds — default 1 min 30 sec
-  onTimeUp,                // callback when timer hits 0
-  warningAt = 20,          // seconds left when warning colour kicks in
+  duration = 60,          
+  onTimeUp,                
+  warningAt = 20,       
 }) => {
   const [timeLeft, setTimeLeft]   = useState(duration);
   const [warning, setWarning]     = useState(false);
@@ -23,7 +23,7 @@ const Timer = ({
       setTimeLeft(prev => {
         const next = prev - 1;
 
-        // Start warning sound loop when hitting warningAt seconds
+        
         if (next === warningAt) {
           setWarning(true);
           if (audioRef.current) {
@@ -59,20 +59,20 @@ const Timer = ({
   const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
   const seconds = String(timeLeft % 60).padStart(2, '0');
 
-  // Progress 1 → 0 as time runs out
+
   const progress = timeLeft / duration;
 
   return (
     <div className={`timer${warning ? ' timer--warning' : ''}`}>
 
-      {/* Arc ring */}
+      
       <svg className="timer__ring" viewBox="0 0 120 120">
-        {/* Track */}
+        
         <circle
           className="timer__ring-track"
           cx="60" cy="60" r="52"
         />
-        {/* Progress arc */}
+       
         <circle
           className="timer__ring-progress"
           cx="60" cy="60" r="52"
@@ -82,7 +82,7 @@ const Timer = ({
         />
       </svg>
 
-      {/* Time text */}
+    
       <div className="timer__face">
         <span className="timer__digits">{minutes}:{seconds}</span>
       </div>

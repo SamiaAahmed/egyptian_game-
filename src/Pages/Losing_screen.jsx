@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Losing_screen.css';
+import LoseSvg from '../Assets/Images/lose_svg.svg';
 
 const Losing_screen = ({
-  playAgainPath = '/level1_6',   // where "Play Again" sends the user
-  levelsPath    = '/levels',     // where "Levels" sends the user
-  homePath      = '/menu',       // where "Home" sends the user
-  onClose,                       // optional: called when overlay closes (e.g. to unmount it from parent)
+  playAgainPath = '/level1_6',
+  levelsPath    = '/levels',
+  homePath      = '/menu',
+  onClose,
+  onPlayAgain,
 }) => {
   const navigate  = useNavigate();
   const [closing, setClosing] = useState(false);
 
-  // Escape closes (same as Menu_popup)
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape' && onClose) close(); };
     window.addEventListener('keydown', handleKey);
@@ -26,16 +27,27 @@ const Losing_screen = ({
     }, 280);
   };
 
-  const handlePlayAgain = () => close(() => navigate(playAgainPath));
-  const handleLevels    = () => close(() => navigate(levelsPath));
-  const handleHome      = () => close(() => navigate(homePath));
+  const handlePlayAgain = () => {
+    if (onPlayAgain) {
+      setClosing(true);
+      setTimeout(() => onPlayAgain(), 280);
+    } else {
+      close(() => navigate(playAgainPath));
+    }
+  };
+
+  const handleLevels = () => close(() => navigate(levelsPath));
+  const handleHome   = () => close(() => navigate(homePath));
 
   return (
     <div className={`losing-popup${closing ? ' losing-popup--closing' : ''}`}>
       <div className="losing-popup__panel">
 
-        <span className="losing-popup__title">You Lost</span>
-        <div  className="losing-popup__divider" aria-hidden="true" />
+        <div className="losing-popup__svg-wrap">
+          <img src={LoseSvg} alt="You Lost" className="losing-popup__svg" />
+        </div>
+
+        <div className="losing-popup__divider" aria-hidden="true" />
 
         <button className="losing-popup__btn" onClick={handlePlayAgain}>
           Play Again
