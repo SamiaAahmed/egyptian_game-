@@ -18,6 +18,12 @@ const Level1_screen2 = () => {
   const [timerKey, setTimerKey] = useState(0);
   const [boardKey, setBoardKey] = useState(0);
 
+  const handleWin = () => {
+    // Unlock level 2 permanently
+    localStorage.setItem('level2_unlocked', 'true');
+    setShowWin(true);
+  };
+
   const handlePlayAgain = () => {
     setShowLose(false);
     setShowWin(false);
@@ -36,7 +42,7 @@ const Level1_screen2 = () => {
         key={boardKey}
         mode="input"
         sequence={sequence}
-        onSuccess={() => setShowWin(true)}
+        onSuccess={handleWin}
         onFail={() => setShowLose(true)}
       />
 

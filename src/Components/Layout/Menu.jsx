@@ -4,8 +4,9 @@ import './Menu.css';
 import Divider from '../../Assets/Images/Line divider.svg';
 
 const menuItems = [
-  { id: 'begin',    label: 'Begin the Journey', path: '/story1',     description: 'Step onto the river of time' },
+  { id: 'begin',    label: 'Begin the Journey', path: '/story1',   description: 'Step onto the river of time' },
   { id: 'levels',   label: 'Levels',             path: '/levels',   description: 'Choose your chapter' },
+  { id: 'endless',  label: 'Endless',            path: '/endless',  description: 'How long can the river hold you?' },
   { id: 'settings', label: 'Settings',           path: '/settings', description: 'Adjust your experience' },
   { id: 'quit',     label: 'Quit',               path: null,        description: 'Return to the waking world' },
 ];
@@ -21,7 +22,6 @@ const PARTICLES = Array.from({ length: 26 }, (_, i) => ({
   opacity:  0.35 + Math.random() * 0.35,
   glyph:    GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
 }));
-
 
 const Particles = React.memo(() => (
   <div className="menu-particles" aria-hidden="true">
@@ -80,7 +80,6 @@ const Menu = ({ onOpenSettings }) => {
 
   return (
     <>
-  
       <Particles />
 
       <div className={`menu-wrapper ${mounted ? 'menu-wrapper--visible' : ''}`}>
@@ -96,7 +95,7 @@ const Menu = ({ onOpenSettings }) => {
                   key={item.id}
                   className={[
                     'menu-item',
-                    isHovered || isKeySelected ? 'menu-item--hover' : '',
+                    isHovered || isKeySelected ? 'menu-item--hover'  : '',
                     isActive                   ? 'menu-item--active' : '',
                     item.id === 'quit'         ? 'menu-item--quit'   : '',
                   ].join(' ')}

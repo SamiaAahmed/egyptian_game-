@@ -1,0 +1,83 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+.main_level3 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Deep sacred blue-violet — like the inside of a temple at dawn,
+     before the first lamp is lit. Holier and stranger than Level 2. */
+  background: linear-gradient(180deg, #06040f 0%, #0d0820 50%, #100a28 100%);
+  overflow: hidden;
+}
+
+/* The holy glow — warm incense-gold at center like a single oil lamp
+   surviving in the dark. Sacred violet-blue above like the space
+   between columns that touches sky. Cold holy white at the very top
+   like moonlight on stone. */
+.main_level3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 60%, rgba(255, 210, 100, 0.22) 0%, transparent 38%),
+    radial-gradient(ellipse 80% 55% at 50% 10%, rgba(180, 140, 255, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 50% 0%,  rgba(220, 200, 255, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 45% at 50% 100%, rgba(80, 50, 160, 0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 50%, rgba(140, 100, 220, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 50%, rgba(140, 100, 220, 0.10) 0%, transparent 60%);
+  animation: lvl3_breathe 10s ease-in-out infinite alternate;
+}
+
+/* Heavy sacred vignette — the sanctuary swallows light at its edges */
+.main_level3::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 75% 45% at 50% 0%,   rgba(2, 1, 8, 0.75) 0%, transparent 70%),
+    radial-gradient(ellipse 75% 35% at 50% 100%,  rgba(2, 1, 8, 0.60) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 85% at 0%   50%,  rgba(2, 1, 8, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 85% at 100% 50%,  rgba(2, 1, 8, 0.55) 0%, transparent 70%);
+}
+
+@keyframes lvl3_breathe {
+  0%   { opacity: 0.60; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main_level3::before { animation: none; }
+}
+
+.lvl3_instruction {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e8d5a0;
+  opacity: 0.38;
+  white-space: nowrap;
+  pointer-events: none;
+}

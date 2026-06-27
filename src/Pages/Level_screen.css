@@ -8,21 +8,20 @@
   font-family: 'PlayfairDisplay';
   src: url('../Assets/Fonts/PlayfairDisplaySC-Regular.ttf');
 }
-
 @font-face {
   font-family: 'PlayfairDisplayVariable';
   src: url('../Assets/Fonts/PlayfairDisplay-VariableFont_wght.ttf');
 }
-
 @font-face {
   font-family: 'Rajdhani';
   src: url('../Assets/Fonts/Rajdhani-Regular.ttf');
 }
 
-body {
-  overflow: hidden;
-}
+body { overflow: hidden; }
 
+/* ═══════════════════════════════════════════════
+   ROOT CANVAS
+═══════════════════════════════════════════════ */
 .main2 {
   position: relative;
   height: 100vh;
@@ -30,55 +29,140 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 4vh 0 5vh;
-  background-image: url('../Assets/Images/Glowing\ river\ to\ ancient\ city\ 2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: #00070F;   /* absolute void */
   overflow: hidden;
 }
 
-.level_screen_div1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 150px;
-  z-index: 10;
+/* ═══════════════════════════════════════════════
+   ATMOSPHERE  — layered radial glows
+═══════════════════════════════════════════════ */
+
+/* Deep teal pool, bottom-center — feels like the Nile below */
+.lvl_atmos_teal {
   position: absolute;
-    top: 270px;
-  left: 420px;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90% 55% at 50% 105%,
+    rgba(15, 55, 60, 0.75) 0%,
+    rgba(10, 35, 40, 0.4) 45%,
+    transparent 70%
+  );
+  z-index: 0;
 }
 
-.level_screen_div2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 46px;
-  z-index: 10;
+/* Warm amber haze, mid-screen — torchlight from an unseen source */
+.lvl_atmos_gold {
   position: absolute;
-  top: 350px;
-  left: 750px;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 40% at 50% 58%,
+    rgba(234, 191, 114, 0.07) 0%,
+    rgba(180, 130, 60, 0.04) 40%,
+    transparent 70%
+  );
+  animation: lvl_goldPulse 8s ease-in-out infinite;
+  z-index: 0;
 }
 
-.level_screen_div3 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 46px;
-  z-index: 10;
-  position: absolute;
-  top: 350px;
-  right: 580px;
+@keyframes lvl_goldPulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1.2; }
 }
 
-.level_screen_div4 {
+/* Cool blue mist, top-left — moonlight through old stone */
+.lvl_atmos_top {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 55% 35% at 15% -5%,
+    rgba(60, 100, 160, 0.10) 0%,
+    transparent 65%
+  );
+  z-index: 0;
+}
+
+
+
+/* ═══════════════════════════════════════════════
+   PARTICLE LAYERS
+═══════════════════════════════════════════════ */
+.lvl_particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lvl_particles_bg { z-index: 1; }
+.lvl_particles_fg { z-index: 2; }
+
+.lvl_glyph {
+  position: absolute;
+  bottom: -4rem;
+  color: #EABF72;
+  font-family: serif;
+  line-height: 1;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* Background glyphs — blurred, slow, dreamy */
+.lvl_glyph_bg {
+  filter: blur(2.5px);
+  animation: lvl_riseBg linear infinite;
+}
+
+@keyframes lvl_riseBg {
+  0%   { transform: translateY(0)      rotate(0deg);  opacity: 0; }
+  8%   { opacity: calc(var(--base-op) * 0.8); }
+  50%  { opacity: var(--base-op);              transform: translateY(-52vh) rotate(10deg); }
+  92%  { opacity: calc(var(--base-op) * 0.5); }
+  100% { transform: translateY(-108vh) rotate(22deg); opacity: 0; }
+}
+
+/* Foreground glyphs — sharp, slightly faster, gentle sway */
+.lvl_glyph_fg {
+  filter: blur(0px);
+  animation: lvl_riseFg linear infinite;
+}
+
+@keyframes lvl_riseFg {
+  0%   { transform: translateY(0) translateX(0)       rotate(0deg);  opacity: 0; }
+  10%  { opacity: var(--base-op); }
+  30%  { transform: translateY(-28vh) translateX(6px)  rotate(-4deg); opacity: calc(var(--base-op) * 1.8); }
+  60%  { transform: translateY(-60vh) translateX(-5px) rotate(5deg);  opacity: var(--base-op); }
+  90%  { opacity: calc(var(--base-op) * 0.4); }
+  100% { transform: translateY(-108vh) translateX(3px) rotate(12deg); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   CARDS LAYOUT
+═══════════════════════════════════════════════ */
+.lvl_cards_wrap {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  gap: 90px;
+  width: 100%;
+  padding: 0 60px;
+}
+
+.lvl_row_top {
+  display: flex;
+  justify-content: center;
+}
+
+.lvl_row_bottom {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 46px;
-  z-index: 10;
-  position: absolute;
-  top: 350px;
-  right: 250px;
+  justify-content: center;
+  gap: 90px;
 }

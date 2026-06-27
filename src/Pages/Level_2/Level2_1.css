@@ -1,0 +1,80 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+.main_level2 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #050a24 0%, #081436 50%, #0a1a3d 100%);
+  overflow: hidden;
+}
+
+/* Mystic glow: warm gold light at center, cool violet/teal ambience top & bottom, gently breathing */
+.main_level2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(234,191,114,0.32) 0%, transparent 45%),
+    radial-gradient(ellipse 70% 50% at 50% 12%, rgba(123,92,196,0.32) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(28,110,120,0.26) 0%, transparent 70%);
+  animation: lvl2_breathe 7s ease-in-out infinite alternate;
+}
+
+/* Outer vignette only — the twinkling stars now live in the <Starfield />
+   component so each star can flicker independently instead of the whole
+   layer dimming together. */
+.main_level2::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 70% 40% at 50% 0%,   rgba(0,5,10,0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 30% at 50% 100%,  rgba(0,5,10,0.40) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 80% at 0%   50%,  rgba(0,5,10,0.30) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 80% at 100% 50%,  rgba(0,5,10,0.30) 0%, transparent 70%);
+}
+
+@keyframes lvl2_breathe {
+  0%   { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main_level2::before {
+    animation: none;
+  }
+}
+
+/* Phase instruction label */
+.lvl2_instruction {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #EABF72;
+  opacity: 0.50;
+  white-space: nowrap;
+  pointer-events: none;
+}

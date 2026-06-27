@@ -21,6 +21,29 @@ import Pause2_screen from './Pages/Level_1/Pause2';
 import Level1_screen1 from './Pages/Level_1/Level1_1';
 import Losing_screen from './Pages/Losing_screen';
 import Level1_screen2 from './Pages/Level_1/Level1_2';
+import Endless_screen from './Pages/Endless_screen';
+import Level2Bg1 from './Assets/Images/level2_1.jpg';
+import Level2Bg2 from './Assets/Images/level2_2.jpg';
+import Level2Bg3 from './Assets/Images/level2_3.jpg';
+import Level2Bg4 from './Assets/Images/level2_4.jpg';
+import Level2Bg5 from './Assets/Images/level2_5.jpg';
+import Level2Bg6 from './Assets/Images/level2_6.jpg';
+import Level2Bg7 from './Assets/Images/level2_7.jpg';
+import Level2Bg8 from './Assets/Images/level2_8.jpg';
+import Pause3_screen from './Pages/Level_2/Pause3_screen';
+import Pause4_screen   from './Pages/Level_2/Pause4_screen';
+import Level2_screen1  from './Pages/Level_2/Level2_1';
+import Level2_screen2  from './Pages/Level_2/Level2_2';
+import Level3Bg1 from './Assets/Images/level3_1.png';
+import Level3Bg2 from './Assets/Images/level3_2.png';
+import Level3Bg3 from './Assets/Images/level3_3.png';
+import Level3Bg4 from './Assets/Images/level3_4.png';
+import Level3Bg5 from './Assets/Images/level3_5.png';
+import Pause5_screen from './Pages/Level_3/Pause5_screen';
+import Pause6_screen from './Pages/Level_3/Pause6_screen';
+import Level3_screen1 from './Pages/Level_3/Level3_1';
+import Level3_screen2 from './Pages/Level_3/Level3_2';
+import RandomGame   from './Pages/Endless_screen';
 
 const Routess = () => {
   return (
@@ -35,6 +58,8 @@ const Routess = () => {
         <Route path="/levels"    element={<Level_screen />} />
         <Route path="/settings"  element={<Setting_screen />} />
         <Route path="/losing"    element={<Losing_screen/>} />
+        <Route path="/levels_2"  element={<Level_screen/>} />
+        <Route path="/endless"   element={<Endless_screen />} />
 
         {/* Intro */}
 
@@ -177,6 +202,203 @@ the Accused."`,
     />
   }
 />
+     {/* level2 */}
+
+        <Route path="/level2_start"
+         element={
+    <Storytemplate background={Level2Bg1} nextPath="/level2_1"
+      lines={[
+        '"The city cannot find itself."',
+        `"Navigation systems give wrong directions a wrong map is overwriting the correct maps with a
+        version no one remembers seeing before."`,
+        '"They cannot delete them."',
+      ]}
+      quoteIndex={2}
+    />
+    }
+    />
+     
+         <Route path="/level2_1"
+         element={
+    <Storytemplate background={Level2Bg2} nextPath="/level2_2"
+      lines={[
+        '"This time is different when river pulled the first time it was Gentle, Curious, Testing."',
+        `"This time it’s Impatient ."`,
+        '"This soul has been waiting longer than most."',
+      ]}
+      quoteIndex={2}
+    />
+    }
+    />
+
+         <Route path="/level2_2"
+         element={
+    <Storytemplate background={Level2Bg3} nextPath="/level2_3"
+      lines={[
+        '"She was the most gifted cartographer in the royal survey corps."',
+        `"Twelve years. Every tributary. Every flood channel. Every bend she had walked beside barefoot as a child."`,
+      ]}
+      quoteIndex={1}
+    />
+    }
+    />
+
+             <Route path="/level2_3"
+         element={
+    <Storytemplate background={Level2Bg4} nextPath="/level2_4"
+      lines={[
+        `"When her senior scribe presented the survey to Pharaoh's court — he presented it as his own."`,
+
+      ]}
+      quoteIndex={0}
+    />
+    }
+    />
+
+         <Route path="/level2_4"
+         element={
+    <Storytemplate background={Level2Bg5} nextPath="/level2_4p"
+      lines={[
+        '"He had access. She did not."',
+        `"She was not sad that her work was taken."`,
+        '"She was enraged that no one saw it happen."',
+      ]}
+      quoteIndex={2}
+    />
+    }
+    />
+
+      <Route path="/level2_4p"  element={< Pause3_screen />} />
+   
+      <Route path="/level2_5"
+         element={
+    <Storytemplate background={Level2Bg6} nextPath="/level2_6"
+      lines={[
+        '"She made copies."',
+        `"She hid them where she knew they would last. She was hiding them as evidence."`,
+        '"She died still waiting. No one came. Until now."',
+      ]}
+      quoteIndex={2}
+    />
+    }
+    />
+
+       <Route path="/level2_6"
+         element={
+    <Storytemplate background={Level2Bg7} nextPath="/level2_7"
+      lines={[
+        '"You cannot rewrite what happened."',
+        `"But you can look at what she left behind."`,
+        '"And you can say what you see."',
+      ]}
+      quoteIndex={2}
+    />
+    }
+    />
+
+    <Route path="/level2_7"     element={<Pause4_screen />} />
+    <Route path="/level2_game"  element={<Level2_screen1 />} />
+    <Route path="/level2_game1" element={<Level2_screen2 />} />
+   
+{/* Level 3 — The Priest Who Doubted */}
+
+<Route path="/level3_start"
+  element={
+    <Storytemplate background={Level3Bg1} nextPath="/level3_1"
+      lines={[
+        '"The temples are losing their sound."',
+        '"Prayers disappear mid-word. The microphones record silence where sound was made."',
+        '"No one is frightened. They are only alone."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
+
+<Route path="/level3_1"
+  element={
+    <Storytemplate background={Level3Bg2} nextPath="/level3_2"
+      lines={[
+        '"This time the river does not pull her."',
+        '"It simply stops being loud."',
+        '"And then she is there."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
+
+<Route path="/level3_2"
+  element={
+    <Storytemplate background={Level3Bg3} nextPath="/level3_3"
+      lines={[
+        '"He was the most devoted priest of his generation."',
+        '"In the fourteenth year of his service, quietly and without drama, he stopped believing."',
+      ]}
+      quoteIndex={1}
+    />
+  }
+/>
+
+<Route path="/level3_3"
+  element={
+    <Storytemplate background={Level3Bg4} nextPath="/level3_4"
+      lines={[
+        '"He did not stop. He kept performing every rite, every day."',
+        '"He stayed for the people watching. Not for himself."',
+        '"He told no one. Not once."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
+
+<Route path="/level3_4"
+  element={
+    <Storytemplate background={Level3Bg5} nextPath="/level3_4p"
+      lines={[
+        '"He died mid-recitation."',
+        '"The words simply stopped coming out."',
+        '"His question never left his lips. Until now."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
+
+<Route path="/level3_4p"  element={<Pause5_screen />} />
+
+<Route path="/level3_5"
+  element={
+    <Storytemplate background={Level3Bg3} nextPath="/level3_6"
+      lines={[
+        '"You cannot answer his question."',
+        '"You can only stay inside it with him."',
+        '"That is what he has been waiting for."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
+
+<Route path="/level3_6"
+  element={
+    <Storytemplate background={Level3Bg4} nextPath="/level3_7"
+      lines={[
+        '"Watch carefully."',
+        '"The order of doubt is not the order of the rite."',
+        '"Remember what you see. Not what you expect."',
+      ]}
+      quoteIndex={2}
+    />
+  }
+/>
+
+<Route path="/level3_7"     element={<Pause6_screen />} />
+<Route path="/level3_game"  element={<Level3_screen1 />} />
+<Route path="/level3_game1" element={<Level3_screen2 />} />
+
+
       </Routes>
     </BrowserRouter>
 

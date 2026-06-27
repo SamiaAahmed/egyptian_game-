@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Menu_screen.css';
-import Game_logo     from '../Assets/Images/Itrue_game_logo.svg';
-import Menu          from '../Components/Layout/Menu';
-import Sound_button  from '../Components/Comman/Sound_button';
+import Game_logo      from '../Assets/Images/Itrue_game_logo.svg';
+import Menu           from '../Components/Layout/Menu';
+import Sound_button   from '../Components/Comman/Sound_button';
 import Setting_screen from '../Components/Comman/Setting_screen';
 
 const Menu_screen = () => {
   const [showSettings, setShowSettings] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <main>
@@ -23,8 +25,10 @@ const Menu_screen = () => {
       </div>
 
       <div className='menu_screen_bottom'>
-        
-        <Menu onOpenSettings={() => setShowSettings(true)} />
+        <Menu
+          onOpenSettings={() => setShowSettings(true)}
+          onEndless={() => navigate('/endless')}
+        />
       </div>
 
       {showSettings && (

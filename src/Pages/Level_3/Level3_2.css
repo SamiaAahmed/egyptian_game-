@@ -1,0 +1,219 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  /* Hide the default cursor entirely — the torch cursor replaces it */
+  cursor: none;
+}
+
+.main_level3 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #06040f 0%, #0d0820 50%, #100a28 100%);
+  overflow: hidden;
+  /* Also hide cursor on the main container */
+  cursor: none;
+}
+
+.main_level3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 60%, rgba(255, 210, 100, 0.22) 0%, transparent 38%),
+    radial-gradient(ellipse 80% 55% at 50% 10%, rgba(180, 140, 255, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 50% 0%,  rgba(220, 200, 255, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 45% at 50% 100%, rgba(80, 50, 160, 0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 50%, rgba(140, 100, 220, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 50%, rgba(140, 100, 220, 0.10) 0%, transparent 60%);
+  animation: lvl3_breathe 10s ease-in-out infinite alternate;
+}
+
+.main_level3::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 75% 45% at 50% 0%,   rgba(2, 1, 8, 0.75) 0%, transparent 70%),
+    radial-gradient(ellipse 75% 35% at 50% 100%,  rgba(2, 1, 8, 0.60) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 85% at 0%   50%,  rgba(2, 1, 8, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 85% at 100% 50%,  rgba(2, 1, 8, 0.55) 0%, transparent 70%);
+}
+
+@keyframes lvl3_breathe {
+  0%   { opacity: 0.60; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main_level3::before { animation: none; }
+}
+
+.lvl3_instruction {
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e8d5a0;
+  opacity: 0.38;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── DARKNESS LAYER ─────────────────────────────────────────────────────────
+   Unlike Level 2 which starts bright and flickers to black,
+   Level 3 starts DARK and flickers to light.
+   This layer sits at full opacity by default and drops away
+   when the .lit class is active. The torch cursor punches
+   a hole of light through it via the mouse-torch element below. */
+.lvl3_darkness {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none !important;
+  background: rgba(3, 1, 10, 0.93);
+  transition: none;
+  /* Flicker to light is handled by toggling .lit on/off in JSX */
+}
+
+/* When .lit is active the darkness drops away — a flash of the full
+   holy background is briefly visible before darkness returns */
+.lvl3_darkness.lit {
+  animation: lvl3_light_flicker 0.6s ease-in-out forwards;
+}
+
+@keyframes lvl3_light_flicker {
+  0%   { opacity: 1;    }
+  10%  { opacity: 0.08; }
+  28%  { opacity: 0.04; }
+  55%  { opacity: 0.06; }
+  78%  { opacity: 0.02; }
+  90%  { opacity: 0.05; }
+  100% { opacity: 1;    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lvl3_darkness.lit {
+    animation: none;
+    opacity: 1 !important;
+  }
+}
+
+/* ── TORCH CURSOR ────────────────────────────────────────────────────────────
+   A soft gold radial light that follows the mouse. It sits above
+   the darkness layer (z-index 501) so it punches through even when
+   the screen is fully dark. The player can always see where their
+   mouse is — but only their immediate surroundings. */
+.lvl3_torch {
+  position: fixed;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 501;
+  /* Warm candlelight: bright gold core, fading to transparent */
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 220, 120, 0.55)  0%,
+    rgba(255, 190,  80, 0.30) 25%,
+    rgba(200, 140,  50, 0.12) 55%,
+    transparent                100%
+  );
+  /* The torch itself breathes very slightly — a real flame is never still */
+  animation: lvl3_torch_breathe 2.8s ease-in-out infinite alternate;
+  /* mix-blend-mode screen lets the light add to whatever is beneath
+     without making the background fully white */
+  mix-blend-mode: screen;
+}
+
+@keyframes lvl3_torch_breathe {
+  0%   { transform: translate(-50%, -50%) scale(1);    opacity: 1;    }
+  100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.88; }
+}
+
+/* ── DOUBT PRESSURE OVERLAY ─────────────────────────────────────────────────
+   The doubt collapse sits ABOVE the darkness (z-index 9999)
+   so it fires on top of everything including the torch light.
+   This means during a Doubt Pressure event even the torch dims —
+   the player feels the room resist their presence. */
+.lvl3_doubt_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 50% 50% at 0%   0%,   rgba(10, 5, 20, 0.95) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 100% 0%,   rgba(10, 5, 20, 0.95) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 0%   100%, rgba(10, 5, 20, 0.95) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 100% 100%, rgba(10, 5, 20, 0.95) 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(160, 100, 255, 0.04) 0%, transparent 40%);
+}
+
+.lvl3_doubt_overlay.active {
+  animation: lvl3_doubt 1.2s ease-in-out;
+}
+
+@keyframes lvl3_doubt {
+  0%   { opacity: 0;    }
+  20%  { opacity: 0.88; }
+  30%  { opacity: 0.94; }
+  65%  { opacity: 0.91; }
+  80%  { opacity: 0.72; }
+  100% { opacity: 0;    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lvl3_doubt_overlay.active {
+    animation: none;
+    opacity: 0 !important;
+  }
+}
+
+/* ── BACKGROUND BLOOM ────────────────────────────────────────────────────────
+   A large, soft radial that follows the mouse through CSS custom properties
+   set in JSX. It lives BELOW the darkness layer (z-index 499) so it
+   so it actually punches through the dark and reveals the sacred geometry
+   and gradients of the scene beneath.
+   The torch cursor (z-index 501) handles the immediate bright pool;
+   this bloom is the wider, dimmer aura that says "the space remembers
+   where you are." */
+:root {
+  --torch-x: 50%;
+  --torch-y: 50%;
+}
+
+.lvl3_bg_bloom {
+  position: fixed;
+  inset: 0;
+  /* z-index 502: above darkness (500) and torch (501), below click capture (600) */
+  z-index: 502;
+  pointer-events: none !important;
+  background: radial-gradient(
+    circle 360px at var(--torch-x) var(--torch-y),
+    rgba(255, 210, 90,  0.28)  0%,
+    rgba(200, 140, 50,  0.14) 35%,
+    rgba(130,  90, 180, 0.07) 60%,
+    transparent                100%
+  );
+  mix-blend-mode: screen;
+}
