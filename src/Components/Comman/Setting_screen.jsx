@@ -10,14 +10,14 @@ const Setting_screen = ({ onClose, audioRef }) => {
   const [volume, setVolume]   = useState(60);
   const [isMuted, setIsMuted] = useState(false);
 
-  // Close on Escape key
+
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') close(); };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
-  // Sync volume with shared audio ref if provided
+
   useEffect(() => {
     if (!audioRef?.current) return;
     audioRef.current.volume = isMuted ? 0 : volume / 100;
@@ -54,13 +54,12 @@ const Setting_screen = ({ onClose, audioRef }) => {
     <div className={`settings-popup${closing ? ' settings-popup--closing' : ''}`}>
       <div className="settings-popup__panel">
 
-        {/* Title */}
+
         <span className="settings-popup__title">Settings</span>
 
-        {/* Divider */}
+
         <div className="settings-popup__divider" aria-hidden="true" />
 
-        {/* ── Volume row ── */}
         <div className="settings-popup__row">
           <button
             onClick={toggleMute}
@@ -87,7 +86,6 @@ const Setting_screen = ({ onClose, audioRef }) => {
           />
         </div>
 
-        {/* ── Language row ── */}
         <div className="settings-popup__row">
           <span className="settings-popup__row-label" style={{ flex: 1 }}>
             Language
@@ -97,7 +95,7 @@ const Setting_screen = ({ onClose, audioRef }) => {
           </button>
         </div>
 
-        {/* ── Bottom buttons ── */}
+
         <div className="settings-popup__bottom">
           <button className="settings-popup__btn" onClick={handleHome}>
             Home

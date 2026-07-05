@@ -17,9 +17,7 @@
   will-change: opacity, transform;
 }
 
-/* Each star fades up/down and drifts a hair vertically on its own
-   random timing, so the sky flickers organically instead of all
-   stars dimming together. */
+
 @keyframes lvl2_star_twinkle {
   0%   { opacity: 0.15; transform: translateY(0) scale(0.85); }
   45%  { opacity: 1;    transform: translateY(-2px) scale(1.25); }
@@ -27,7 +25,6 @@
   100% { opacity: 0.15; transform: translateY(0) scale(0.85); }
 }
 
-/* Whole field creeps slowly side to side, like a very slow pan. */
 @keyframes lvl2_starfield_drift {
   from { transform: translate(0, 0); }
   to   { transform: translate(-14px, 10px); }

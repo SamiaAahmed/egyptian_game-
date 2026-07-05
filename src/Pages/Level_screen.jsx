@@ -32,18 +32,18 @@ const fgParticles = Array.from({ length: 18 }, (_, i) => ({
 const Level_screen = React.memo(() => {
   const navigate = useNavigate();
 
-  // Read unlock state from localStorage (persists across sessions)
+
   const level2Unlocked = localStorage.getItem('level2_unlocked') === 'true';
 
   return (
     <main className='main2'>
 
-      {/* ── Atmosphere layers ── */}
+
       <div className='lvl_atmos_teal' />
       <div className='lvl_atmos_gold' />
       <div className='lvl_atmos_top' />
 
-      {/* ── Background particles (blurred, large) ── */}
+
       <div className='lvl_particles lvl_particles_bg'>
         {bgParticles.map(p => (
           <span
@@ -60,7 +60,7 @@ const Level_screen = React.memo(() => {
         ))}
       </div>
 
-      {/* ── Foreground particles (sharp, small) ── */}
+
       <div className='lvl_particles lvl_particles_fg'>
         {fgParticles.map(p => (
           <span
@@ -77,11 +77,11 @@ const Level_screen = React.memo(() => {
         ))}
       </div>
 
-      {/* ── UI chrome ── */}
+
       <Sound_button />
       <Menu_button />
 
-      {/* ── Cards ── */}
+
       <div className='lvl_cards_wrap'>
         <div className='lvl_row_top'>
           <Level_card

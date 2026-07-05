@@ -16,16 +16,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Deep sacred blue-violet — like the inside of a temple at dawn,
-     before the first lamp is lit. Holier and stranger than Level 2. */
+
   background: linear-gradient(180deg, #06040f 0%, #0d0820 50%, #100a28 100%);
   overflow: hidden;
 }
 
-/* The holy glow — warm incense-gold at center like a single oil lamp
-   surviving in the dark. Sacred violet-blue above like the space
-   between columns that touches sky. Cold holy white at the very top
-   like moonlight on stone. */
+
 .main_level3::before {
   content: '';
   position: absolute;
@@ -42,7 +38,7 @@ body {
   animation: lvl3_breathe 10s ease-in-out infinite alternate;
 }
 
-/* Heavy sacred vignette — the sanctuary swallows light at its edges */
+
 .main_level3::after {
   content: '';
   position: absolute;

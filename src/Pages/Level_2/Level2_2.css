@@ -20,7 +20,6 @@ body {
   overflow: hidden;
 }
 
-/* Mystic glow: warm gold light at center, cool violet/teal ambience top & bottom, gently breathing */
 .main_level2::before {
   content: '';
   position: absolute;
@@ -34,9 +33,7 @@ body {
   animation: lvl2_breathe 7s ease-in-out infinite alternate;
 }
 
-/* Outer vignette only — the twinkling stars now live in the <Starfield />
-   component so each star can flicker independently instead of the whole
-   layer dimming together. */
+
 .main_level2::after {
   content: '';
   position: absolute;
@@ -61,7 +58,6 @@ body {
   }
 }
 
-/* Phase instruction label */
 .lvl2_instruction {
   position: fixed;
   top: 150px;
@@ -79,14 +75,7 @@ body {
   pointer-events: none;
 }
 
-/* Hard-mode hazard: the whole screen blacks out for ~0.5s, leaving only
-   a faint hint of starlight, then snaps back. Triggered randomly every
-   15-20s by Level2_2.jsx toggling the "active" class. z-index is set
-   very high since it only ever fires during active gameplay (it's
-   paused while the win/lose screens are open), so it can safely sit
-   above everything else without fighting any other component's
-   stacking order. pointer-events:none means it never blocks a real
-   click — it's a visual scare, not a hitbox. */
+
 .lvl2_flicker_overlay {
   position: fixed;
   inset: 0;

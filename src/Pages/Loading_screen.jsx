@@ -29,7 +29,7 @@ const Loading_screen = () => {
     };
   }, []);
 
-  // Navigate immediately when the loading bar animation finishes
+ 
   const handleLoadingComplete = () => {
     navigate('/splash');
   };

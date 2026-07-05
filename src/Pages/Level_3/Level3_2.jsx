@@ -19,16 +19,13 @@ const Level3_screen2 = () => {
   const [timerKey, setTimerKey] = useState(0);
   const [boardKey, setBoardKey] = useState(0);
 
-  // ── TORCH CURSOR ─────────────────────────────────────────────
-  // Tracks real mouse position and moves the torch div to follow it.
+
   const [torchPos, setTorchPos] = useState({ x: -300, y: -300 });
   const mainRef = useRef(null);
 
   const handleMouseMove = useCallback((e) => {
     setTorchPos({ x: e.clientX, y: e.clientY });
 
-    // Drive the background bloom via CSS custom properties on the root element.
-    // This keeps the glow in sync with the mouse without re-rendering React state.
     const xPct = (e.clientX / window.innerWidth)  * 100;
     const yPct = (e.clientY / window.innerHeight) * 100;
     document.documentElement.style.setProperty('--torch-x', `${xPct}%`);
@@ -40,23 +37,16 @@ const Level3_screen2 = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [handleMouseMove]);
 
-  // ── DARKNESS + LIGHT FLICKER ──────────────────────────────────
-  // Unlike Level 2 (bright → flickers dark), Level 3 is DARK by default.
-  // Every 3–5s the darkness briefly drops away — a flash of holy light —
-  // then slams back. The .lit class triggers the CSS animation.
-  // We must remove the class after the animation ends so it can retrigger.
+
   const [litActive, setLitActive]       = useState(false);
   const litOnTimeout  = useRef(null);
   const litOffTimeout = useRef(null);
   const clickCaptureRef = useRef(null);
 
-  // Forward clicks from the top overlay down to the board beneath it
   const handleCaptureClick = useCallback((e) => {
     if (showLose || showWin) return;
-    // Find the offering-grid-3 element and dispatch a click on the right cell
     const grid = document.querySelector('.offering-grid-3');
     if (!grid) return;
-    // Hide the capture layer momentarily, find element at point, re-show
     if (clickCaptureRef.current) clickCaptureRef.current.style.pointerEvents = 'none';
     const el = document.elementFromPoint(e.clientX, e.clientY);
     if (clickCaptureRef.current) clickCaptureRef.current.style.pointerEvents = 'all';
@@ -74,11 +64,9 @@ const Level3_screen2 = () => {
     }
 
     const scheduleNextFlash = () => {
-      // Fires every 3–5 seconds — more often than Level 2's 4–6s
       const delay = 3000 + Math.random() * 2000;
       litOnTimeout.current = setTimeout(() => {
         setLitActive(true);
-        // Animation is 0.6s; remove class after so it can fire again
         litOffTimeout.current = setTimeout(() => {
           setLitActive(false);
           scheduleNextFlash();
@@ -94,8 +82,6 @@ const Level3_screen2 = () => {
     };
   }, [showLose, showWin, boardKey]);
 
-  // ── DOUBT PRESSURE ────────────────────────────────────────────
-  // Fires every 3–4s, lasts 1200ms, locks the board during the window.
   const [doubtActive, setDoubtActive] = useState(false);
   const doubtOnTimeout  = useRef(null);
   const doubtOffTimeout = useRef(null);
@@ -163,7 +149,7 @@ const Level3_screen2 = () => {
         onFail={() => setShowLose(true)}
       />
 
-      {/* ── Background bloom + darkness hidden on win/lose ── */}
+
       {!showLose && !showWin && (
         <>
           <div className="lvl3_bg_bloom" aria-hidden="true" />
@@ -174,7 +160,7 @@ const Level3_screen2 = () => {
         </>
       )}
 
-      {/* ── Torch + Doubt overlay — hidden on win/lose so screen is fully lit ── */}
+
       {!showLose && !showWin && (
         <>
           <div
@@ -206,7 +192,7 @@ const Level3_screen2 = () => {
         />
       )}
 
-      {/* ── Click capture — transparent layer above darkness, forwards clicks to board ── */}
+
       {!showLose && !showWin && (
         <div
           ref={clickCaptureRef}

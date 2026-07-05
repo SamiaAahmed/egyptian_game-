@@ -46,7 +46,6 @@ const Intro1_screen = () => {
     setTypingDone(true);
   }, []);
 
-  // Spacebar → navigate to /story2 (only after typing animation done)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Space' || e.key === ' ') {

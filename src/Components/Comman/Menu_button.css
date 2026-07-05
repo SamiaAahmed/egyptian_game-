@@ -1,4 +1,4 @@
-/* ─── Menu Button ───────────────────────────────────────────── */
+
 .menu-btn {
   position: fixed;
   top: 50px;
@@ -25,7 +25,6 @@
     box-shadow   0.3s ease;
 }
 
-/* Hover */
 .menu-btn:hover {
   background: rgba(29, 171, 187, 0.534);
   border-color: rgba(234, 191, 114, 0.6);
@@ -35,12 +34,10 @@
     0 0 36px rgba(234, 191, 114, 0.1);
 }
 
-/* Click press */
 .menu-btn:active {
   transform: scale(0.93);
 }
 
-/* Icon */
 .menu-btn__icon {
   width: 44px;
   height: 34px;

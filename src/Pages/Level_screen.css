@@ -19,9 +19,7 @@
 
 body { overflow: hidden; }
 
-/* ═══════════════════════════════════════════════
-   ROOT CANVAS
-═══════════════════════════════════════════════ */
+
 .main2 {
   position: relative;
   height: 100vh;
@@ -31,15 +29,13 @@ body { overflow: hidden; }
   align-items: center;
   justify-content: center;
   padding: 4vh 0 5vh;
-  background: #00070F;   /* absolute void */
+  background: #00070F;   
   overflow: hidden;
 }
 
-/* ═══════════════════════════════════════════════
-   ATMOSPHERE  — layered radial glows
-═══════════════════════════════════════════════ */
 
-/* Deep teal pool, bottom-center — feels like the Nile below */
+
+
 .lvl_atmos_teal {
   position: absolute;
   inset: 0;
@@ -53,7 +49,7 @@ body { overflow: hidden; }
   z-index: 0;
 }
 
-/* Warm amber haze, mid-screen — torchlight from an unseen source */
+
 .lvl_atmos_gold {
   position: absolute;
   inset: 0;
@@ -73,7 +69,7 @@ body { overflow: hidden; }
   50%       { opacity: 1.2; }
 }
 
-/* Cool blue mist, top-left — moonlight through old stone */
+
 .lvl_atmos_top {
   position: absolute;
   inset: 0;
@@ -86,11 +82,6 @@ body { overflow: hidden; }
   z-index: 0;
 }
 
-
-
-/* ═══════════════════════════════════════════════
-   PARTICLE LAYERS
-═══════════════════════════════════════════════ */
 .lvl_particles {
   position: absolute;
   inset: 0;
@@ -111,7 +102,6 @@ body { overflow: hidden; }
   will-change: transform, opacity;
 }
 
-/* Background glyphs — blurred, slow, dreamy */
 .lvl_glyph_bg {
   filter: blur(2.5px);
   animation: lvl_riseBg linear infinite;
@@ -125,7 +115,6 @@ body { overflow: hidden; }
   100% { transform: translateY(-108vh) rotate(22deg); opacity: 0; }
 }
 
-/* Foreground glyphs — sharp, slightly faster, gentle sway */
 .lvl_glyph_fg {
   filter: blur(0px);
   animation: lvl_riseFg linear infinite;
@@ -140,9 +129,7 @@ body { overflow: hidden; }
   100% { transform: translateY(-108vh) translateX(3px) rotate(12deg); opacity: 0; }
 }
 
-/* ═══════════════════════════════════════════════
-   CARDS LAYOUT
-═══════════════════════════════════════════════ */
+
 .lvl_cards_wrap {
     position: relative;
     z-index: 10;

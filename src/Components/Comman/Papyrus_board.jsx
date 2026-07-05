@@ -20,18 +20,18 @@ const Papyrus_board = ({
 }) => {
   const glowSequence = useMemo(() => pickRandom(ALL_SQUARES, glowCount), []);
 
-  // ── SHOW MODE state ──
+
   const [currentStep, setCurrentStep] = useState(-1);
   const [showing,     setShowing]     = useState(true);
   const [loopsDone,   setLoopsDone]   = useState(0);
 
-  // ── INPUT MODE state ──
+
   const [userStep,  setUserStep]  = useState(0);
   const [correct,   setCorrect]   = useState(new Set());
   const [wrongCell, setWrongCell] = useState(null);
   const [failed,    setFailed]    = useState(false);
 
-  // ── SHOW MODE: auto-advance + repeat ──
+
   useEffect(() => {
     if (mode !== 'show' || !showing) return;
 
@@ -57,7 +57,7 @@ const Papyrus_board = ({
     return () => clearTimeout(t);
   }, [currentStep, showing, mode, loopsDone, glowSequence, repeatCount, onSequenceDone]);
 
-  // ── INPUT MODE: handle click ──
+
   const handleCellClick = useCallback((index) => {
     if (mode !== 'input' || failed) return;
     if (sequence.length === 0) return;
@@ -83,7 +83,7 @@ const Papyrus_board = ({
     }
   }, [mode, sequence, userStep, correct, onSuccess, onFail, failed]);
 
-  // ── Determine cell class ──
+
   const getCellClass = (i) => {
     let cls = 'papyrus-cell';
     if (mode === 'show') {

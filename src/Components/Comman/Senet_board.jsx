@@ -20,23 +20,22 @@ const Senet_board = ({
 }) => {
   const glowSequence = useMemo(() => pickRandom(ALL_SQUARES, glowCount), []);
 
-  // ── SHOW MODE state ──
-  // -1 means "waiting before first glow"; 0+ means "currently glowing index currentStep"
+
   const [currentStep, setCurrentStep] = useState(-1);
   const [showing,     setShowing]     = useState(true);
   const [loopsDone,   setLoopsDone]   = useState(0);
 
-  // ── INPUT MODE state ──
+
   const [userStep,  setUserStep]  = useState(0);
   const [correct,   setCorrect]   = useState(new Set());
   const [wrongCell, setWrongCell] = useState(null);
-  const [failed,    setFailed]    = useState(false); // lock board after fail
+  const [failed,    setFailed]    = useState(false); 
 
-  // ── SHOW MODE: auto-advance + repeat ──
+ 
   useEffect(() => {
     if (mode !== 'show' || !showing) return;
 
-    // -1 = waiting before the first cell lights up
+    
     if (currentStep === -1) {
       const t = setTimeout(() => setCurrentStep(0), 600);
       return () => clearTimeout(t);
@@ -59,10 +58,10 @@ const Senet_board = ({
     return () => clearTimeout(t);
   }, [currentStep, showing, mode, loopsDone, glowSequence, repeatCount, onSequenceDone]);
 
-  // ── INPUT MODE: handle click ──
+ 
   const handleCellClick = useCallback((index) => {
     if (mode !== 'input' || failed) return;
-    if (sequence.length === 0) return; // guard: no sequence yet
+    if (sequence.length === 0) return; 
 
     const expected = sequence[userStep];
 
@@ -86,11 +85,11 @@ const Senet_board = ({
     }
   }, [mode, sequence, userStep, correct, onSuccess, onFail, failed]);
 
-  // ── Determine cell class ──
+  
   const getCellClass = (i) => {
     let cls = 'senet-cell';
     if (mode === 'show') {
-      // -1 means we're in the initial delay before the first cell lights up
+      
       const activeGlow = showing && currentStep >= 0 ? (glowSequence[currentStep] ?? null) : null;
       if (i === activeGlow) cls += ' senet-cell--glow';
     } else {

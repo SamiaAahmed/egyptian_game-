@@ -22,7 +22,7 @@ const Menu_popup = ({ onClose }) => {
     close();
   };
 
-  // Close the menu popup, then tell the parent to open Settings
+
   const handleSettings = () => {
     setClosing(true);
     setTimeout(() => onClose({ openSettings: true }), 280);

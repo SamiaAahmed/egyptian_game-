@@ -3,7 +3,7 @@ import './Starfield.css';
 
 const STAR_COLORS = ['#ffffff', '#ffe9c2'];
 
-// Generate a fixed set of randomized stars once per mount.
+
 function makeStars(count) {
   const stars = [];
   for (let i = 0; i < count; i++) {
@@ -20,11 +20,6 @@ function makeStars(count) {
   return stars;
 }
 
-/**
- * Drop this in as the FIRST child of `.main_level2` (before Sound_button,
- * Menu_button, etc). It sits at z-index 0, same layer as the glow/vignette
- * pseudo-elements, so the real UI on top is unaffected.
- */
 const Starfield = ({ count = 70 }) => {
   const stars = useMemo(() => makeStars(count), [count]);
 

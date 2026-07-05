@@ -1,4 +1,4 @@
-/* ─── Level Card ────────────────────────────────────────────── */
+
 
 @font-face {
   font-family: 'PlayfairDisplay';
@@ -20,7 +20,6 @@
   --card-width: 260px;
 }
 
-/* ─── Card shell ────────────────────────────────────────────── */
 .level-card {
   position: relative;
   width: var(--card-width);
@@ -48,7 +47,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Hover ─────────────────────────────────────────────────── */
 .level-card:hover {
   border-color: var(--gold-dim);
   transform: translateY(-6px) scale(1.02);
@@ -58,7 +56,6 @@
     inset 0 0 40px rgba(31, 81, 87, 0.15);
 }
 
-/* ─── Locked ────────────────────────────────────────────────── */
 .level-card--locked {
   cursor: not-allowed;
   filter: saturate(0.3) brightness(0.6);
@@ -72,13 +69,11 @@
   border-color: rgba(234, 191, 114, 0.1);
 }
 
-/* ─── Active / clicked ──────────────────────────────────────── */
 .level-card--active {
   border-color: var(--gold);
   box-shadow: 0 0 50px rgba(234, 191, 114, 0.35);
 }
 
-/* ─── Sweep shimmer ─────────────────────────────────────────── */
 .level-card__sweep {
   position: absolute;
   top: 0;
@@ -106,7 +101,6 @@
   to   { left: 140%; }
 }
 
-/* ─── Image ─────────────────────────────────────────────────── */
 .level-card__image-wrap {
   position: relative;
   width: 100%;
@@ -118,7 +112,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;        /* show top of image so faces aren't cut */
+  object-position: top;        
   display: block;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -127,7 +121,7 @@
   transform: scale(1.06);
 }
 
-/* Gradient fade at bottom of image into card body */
+
 .level-card__image-overlay {
   position: absolute;
   inset: 0;
@@ -138,7 +132,6 @@
   );
 }
 
-/* Level badge */
 .level-card__badge {
   position: absolute;
   top: 10px;
@@ -156,7 +149,6 @@
   backdrop-filter: blur(6px);
 }
 
-/* Lock overlay */
 .level-card__lock {
   position: absolute;
   inset: 0;
@@ -167,7 +159,6 @@
   background: rgba(8, 24, 28, 0.5);
 }
 
-/* ─── Divider ───────────────────────────────────────────────── */
 .level-card__divider {
   width: 100%;
   height: 1px;
@@ -177,7 +168,6 @@
 }
 .level-card:hover .level-card__divider { opacity: 1; }
 
-/* ─── Body ──────────────────────────────────────────────────── */
 .level-card__body {
   padding: 14px 16px 18px;
   display: flex;
@@ -208,7 +198,6 @@
   line-height: 1.5;
 }
 
-/* ─── Footer — CTA only ─────────────────────────────────────── */
 .level-card__footer {
   display: flex;
   align-items: center;

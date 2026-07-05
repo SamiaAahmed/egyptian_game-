@@ -19,7 +19,7 @@ const Splash_screen = () => {
 
   return (
     <main>
-      {/* Mounted but invisible — keeps audio alive across the route transition */}
+
       <Sound_button hidden />
 
       <div className='loading_screen_div2'>

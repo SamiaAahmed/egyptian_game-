@@ -3,7 +3,7 @@
   src: url('../Assets/Fonts/Rajdhani-Regular.ttf');
 }
 
-/* ─── Overlay backdrop ──────────────────────────────────────── */
+
 .winning-popup {
   position: fixed;
   inset: 0;
@@ -25,7 +25,7 @@
 @keyframes winningOverlayIn  { to   { opacity: 1; } }
 @keyframes winningOverlayOut { from { opacity: 1; } to { opacity: 0; } }
 
-/* ─── Panel ─────────────────────────────────────────────────── */
+
 .winning-popup__panel {
   position: relative;
   display: flex;
@@ -59,7 +59,7 @@
   to   { opacity: 0; transform: translateY(-12px) scale(0.97); }
 }
 
-/* ─── SVG title ─────────────────────────────────────────────── */
+
 .winning-popup__svg-wrap {
   display: flex;
   align-items: center;
@@ -95,7 +95,6 @@
   }
 }
 
-/* ─── Divider ───────────────────────────────────────────────── */
 .winning-popup__divider {
   width: 100%;
   height: 1px;
@@ -103,7 +102,6 @@
   margin-bottom: 6px;
 }
 
-/* ─── Buttons ───────────────────────────────────────────────── */
 .winning-popup__btn {
   position: relative;
   width: 280px;
@@ -139,7 +137,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* stagger each button */
 .winning-popup__btn:nth-child(3) { animation-delay: 0.45s; }
 .winning-popup__btn:nth-child(4) { animation-delay: 0.58s; }
 .winning-popup__btn:nth-child(5) { animation-delay: 0.71s; }
@@ -156,7 +153,6 @@
 
 .winning-popup__btn:active { transform: scale(0.97); }
 
-/* Left accent bar */
 .winning-popup__btn::before {
   content: '';
   position: absolute;
@@ -168,7 +164,6 @@
 }
 .winning-popup__btn:hover::before { opacity: 1; }
 
-/* Sweep shimmer */
 .winning-popup__btn::after {
   content: '';
   position: absolute;
@@ -192,7 +187,6 @@
   to   { left: 140%; }
 }
 
-/* Home button */
 .winning-popup__btn--home {
   color: rgba(234, 191, 114, 0.7);
   margin-top: 2px;
@@ -203,7 +197,6 @@
   border-color: rgba(234, 191, 114, 0.35);
 }
 
-/* ─── Panel border glow pulse ───────────────────────────────── */
 @keyframes panelBorderPulse {
   0%, 100% { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(234,191,114,0.08), 0 0 80px rgba(234,191,114,0.03); }
   50%       { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 60px rgba(234,191,114,0.18), 0 0 120px rgba(234,191,114,0.08); }

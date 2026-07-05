@@ -20,7 +20,6 @@ body {
   overflow: hidden;
 }
 
-/* Mystic glow: warm gold light at center, cool violet/teal ambience top & bottom, gently breathing */
 .main_level2::before {
   content: '';
   position: absolute;
@@ -34,9 +33,7 @@ body {
   animation: lvl2_breathe 7s ease-in-out infinite alternate;
 }
 
-/* Outer vignette only — the twinkling stars now live in the <Starfield />
-   component so each star can flicker independently instead of the whole
-   layer dimming together. */
+
 .main_level2::after {
   content: '';
   position: absolute;
@@ -61,7 +58,6 @@ body {
   }
 }
 
-/* Phase instruction label */
 .lvl2_instruction {
   position: fixed;
   top: 20px;

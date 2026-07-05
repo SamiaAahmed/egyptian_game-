@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import './Offering_board.css';
-// Replace this import with whatever your ancient book image is called
 import BookImg from '../../Assets/Images/anceient_book.svg';
 
 const ALL_SQUARES = Array.from({ length: 32 }, (_, i) => i);
@@ -18,22 +17,22 @@ const Offering_board = ({
   onSuccess,
   onFail,
   repeatCount  = 2,
-  doubtActive  = false,   // Level 3 only — locks input during Doubt Pressure
+  doubtActive  = false,   
 }) => {
   const glowSequence = useMemo(() => pickRandom(ALL_SQUARES, glowCount), []);
 
-  // ── SHOW MODE state ──
+
   const [currentStep, setCurrentStep] = useState(-1);
   const [showing,     setShowing]     = useState(true);
   const [loopsDone,   setLoopsDone]   = useState(0);
 
-  // ── INPUT MODE state ──
+
   const [userStep,  setUserStep]  = useState(0);
   const [correct,   setCorrect]   = useState(new Set());
   const [wrongCell, setWrongCell] = useState(null);
   const [failed,    setFailed]    = useState(false);
 
-  // ── SHOW MODE: auto-advance + repeat ──
+
   useEffect(() => {
     if (mode !== 'show' || !showing) return;
 
@@ -59,12 +58,11 @@ const Offering_board = ({
     return () => clearTimeout(t);
   }, [currentStep, showing, mode, loopsDone, glowSequence, repeatCount, onSequenceDone]);
 
-  // ── INPUT MODE: handle click ──
-  // If doubtActive is true the board is completely locked — no tap registers.
+
   const handleCellClick = useCallback((index) => {
     if (mode !== 'input' || failed) return;
     if (sequence.length === 0) return;
-    if (doubtActive) return;   // ← Level 3 lock
+    if (doubtActive) return;   
 
     const expected = sequence[userStep];
 
@@ -87,7 +85,7 @@ const Offering_board = ({
     }
   }, [mode, sequence, userStep, correct, onSuccess, onFail, failed, doubtActive]);
 
-  // ── Determine cell class ──
+
   const getCellClass = (i) => {
     let cls = 'offering-cell';
     if (mode === 'show') {

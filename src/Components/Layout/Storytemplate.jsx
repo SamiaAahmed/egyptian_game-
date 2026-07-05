@@ -17,8 +17,7 @@ const Storytemplate = ({
   const navigate = useNavigate();
   const [typingDone, setTypingDone] = useState(false);
 
-  // Allow either an explicit backgroundVideo prop, OR auto-detect
-  // if `background` itself points to a video file.
+
   const isVideo =
     !!backgroundVideo ||
     (typeof background === 'string' && /\.(mp4|webm|ogg)$/i.test(background));

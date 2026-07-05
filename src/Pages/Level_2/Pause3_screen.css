@@ -23,7 +23,6 @@ body {
   overflow: hidden;
 }
 
-/* ─── Main container ─────────────────────────────────────── */
 .main3 {
   position: relative;
   height: 100vh;
@@ -37,7 +36,6 @@ body {
   overflow: hidden;
 }
 
-/* ─── Particles — copied verbatim from Menu.css ──────────── */
 .menu-particles {
   position: fixed;
   inset: 0;
@@ -75,7 +73,7 @@ body {
   }
 }
 
-/* ─── Centre composition wrapper ─────────────────────────── */
+
 .story1_center {
   position: relative;
   z-index: 10;
@@ -100,7 +98,6 @@ body {
   justify-content: center;
 }
 
-/* ─── Logo: fades in first ───────────────────────────────── */
 .story1_logo_reveal {
   opacity: 0;
   animation: logoFadeIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -123,7 +120,6 @@ body {
   }
 }
 
-/* ─── Text: golden glow reveal after logo settles ────────── */
 .story1_text_reveal {
   opacity: 0;
   animation: glowReveal 2.4s ease forwards;
@@ -161,7 +157,6 @@ body {
   }
 }
 
-/* ─── Splash screen overlay ──────────────────────────────── */
 .story1_splash_overlay {
   position: absolute;
   inset: 0;
@@ -178,7 +173,6 @@ body {
   display: block;
 }
 
-/* ─── Shared text & logo styles ──────────────────────────── */
 .game_logo {
   width: 420px;
   height: auto;

@@ -40,12 +40,10 @@ const   Pause2_screen = () => {
   const navigate = useNavigate();
   const [typingDone, setTypingDone] = useState(false);
 
-  // "Never forgets" finishes its glowReveal animation
   const handleTextAnimationEnd = useCallback(() => {
     setTypingDone(true);
   }, []);
 
-  // Spacebar → navigate to /story2 (only after typing animation done)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Space' || e.key === ' ') {

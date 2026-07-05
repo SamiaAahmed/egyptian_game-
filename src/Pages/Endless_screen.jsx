@@ -14,7 +14,7 @@ const Endless_screen = () => {
 
   const [round,      setRound]      = useState(1);
   const [glowCount,  setGlowCount]  = useState(STARTING_COUNT);
-  const [phase,      setPhase]      = useState('show');   // 'show' | 'input'
+  const [phase,      setPhase]      = useState('show');  
   const [sequence,   setSequence]   = useState([]);
   const [bestRound,  setBestRound]  = useState(
     () => parseInt(localStorage.getItem('endless_best') ?? '0', 10)
@@ -24,13 +24,12 @@ const Endless_screen = () => {
   const [boardKey,   setBoardKey]   = useState(0);
   const [timerKey,   setTimerKey]   = useState(0);
 
-  /* Show phase finished → switch to input phase */
+
   const handleSequenceDone = useCallback((seq) => {
     setSequence(seq);
     setPhase('input');
   }, []);
 
-  /* Save best helper */
   const saveBest = useCallback((completedRound) => {
     if (completedRound > bestRound) {
       setBestRound(completedRound);
@@ -38,23 +37,20 @@ const Endless_screen = () => {
     }
   }, [bestRound]);
 
-  /* Player matched correctly → next round */
   const handleSuccess = useCallback(() => {
     saveBest(round);
     setRound(r => r + 1);
     setGlowCount(c => c + 1);
     setPhase('show');
     setBoardKey(k => k + 1);
-    setTimerKey(k => k + 1);   // reset timer each round
+    setTimerKey(k => k + 1);   
   }, [round, saveBest]);
 
-  /* Timer up or wrong click → game over */
   const handleFail = useCallback(() => {
     saveBest(round - 1);
     setDead(true);
   }, [round, saveBest]);
 
-  /* Close overlay with animation then restart */
   const handleRestart = () => {
     setClosing(true);
     setTimeout(() => {
@@ -84,15 +80,12 @@ const Endless_screen = () => {
       <Sound_button />
       <Menu_button />
 
-      {/* ── Atmosphere ── */}
       <div className='endless_atmos' />
 
-      {/* ── Timer (only during input phase) ── */}
       {phase === 'input' && !dead && (
         <Timer key={timerKey} duration={60} onTimeUp={handleFail} />
       )}
 
-      {/* ── HUD ── */}
       <div className='endless_hud'>
         <div className='endless_stat'>
           <span className='endless_stat_label'>Round</span>
@@ -105,12 +98,10 @@ const Endless_screen = () => {
         </div>
       </div>
 
-      {/* ── Phase label ── */}
       <p className='endless_phase_label'>
         {phase === 'show' ? 'Watch the sequence…' : 'Repeat the sequence'}
       </p>
 
-      {/* ── Board ── */}
       <Senet_board
         key={boardKey}
         glowCount={glowCount}
@@ -122,7 +113,6 @@ const Endless_screen = () => {
         onFail={phase === 'input' ? handleFail : undefined}
       />
 
-      {/* ── Game Over overlay — matches Losing_screen style exactly ── */}
       {dead && (
         <div className={`losing-popup${closing ? ' losing-popup--closing' : ''}`}>
           <div className='losing-popup__panel'>
@@ -131,7 +121,6 @@ const Endless_screen = () => {
               <img src={LoseSvg} alt="Game Over" className='losing-popup__svg' />
             </div>
 
-            {/* Round info sits between svg and divider */}
             <div className='endless_popup_stats'>
               <span className='endless_popup_stat'>
                 Round <strong>{round}</strong>

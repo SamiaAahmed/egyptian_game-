@@ -19,9 +19,7 @@ const Level2_screen2 = () => {
   const [timerKey, setTimerKey] = useState(0);
   const [boardKey, setBoardKey] = useState(0);
 
-  // Hard-mode hazard: every ~5s, blackout the screen for half a second
-  // (only a faint hint of starlight stays visible) right while the player
-  // is trying to click. Pauses on win/lose, restarts on play-again.
+
   const [flickerActive, setFlickerActive] = useState(false);
   const flickerOnTimeout  = useRef(null);
   const flickerOffTimeout = useRef(null);
@@ -35,7 +33,7 @@ const Level2_screen2 = () => {
     }
 
     const scheduleNextFlicker = () => {
-      const delay = 400 + Math.random() * 2000; // random between 4s-6s, ~every 5s
+      const delay = 400 + Math.random() * 2000; 
       flickerOnTimeout.current = setTimeout(() => {
         setFlickerActive(true);
         flickerOffTimeout.current = setTimeout(() => {

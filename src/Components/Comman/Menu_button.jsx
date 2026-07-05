@@ -8,8 +8,6 @@ const Menu_button = () => {
   const [open, setOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
-  // Menu_popup calls onClose() normally, or onClose({ openSettings: true })
-  // when the user clicked Settings inside the popup.
   const handleMenuClose = (opts) => {
     setOpen(false);
     if (opts?.openSettings) {
